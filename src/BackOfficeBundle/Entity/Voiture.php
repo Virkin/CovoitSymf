@@ -10,7 +10,12 @@ class Voiture
     /**
      * @var string
      */
-    private $voiture;
+    private $marque;
+
+    /**
+     * @var string
+     */
+    private $modele;
 
     /**
      * @var integer
@@ -24,27 +29,51 @@ class Voiture
 
 
     /**
-     * Set voiture
+     * Set marque
      *
-     * @param string $voiture
+     * @param string $marque
      *
      * @return Voiture
      */
-    public function setVoiture($voiture)
+    public function setMarque($marque)
     {
-        $this->voiture = $voiture;
+        $this->marque = $marque;
 
         return $this;
     }
 
     /**
-     * Get voiture
+     * Get marque
      *
      * @return string
      */
-    public function getVoiture()
+    public function getMarque()
     {
-        return $this->voiture;
+        return $this->marque;
+    }
+
+    /**
+     * Set modele
+     *
+     * @param string $modele
+     *
+     * @return Voiture
+     */
+    public function setModele($modele)
+    {
+        $this->modele = $modele;
+
+        return $this;
+    }
+
+    /**
+     * Get modele
+     *
+     * @return string
+     */
+    public function getModele()
+    {
+        return $this->modele;
     }
 
     /**
