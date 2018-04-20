@@ -16,6 +16,7 @@
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="AppBundle">AppBundle\AppBundle</parameter>
+      <parameter key="BackOfficeBundle">BackOfficeBundle\BackOfficeBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -61,6 +62,11 @@
         <parameter key="parent">null</parameter>
         <parameter key="path">/var/www/html/CovoitSymf/src/AppBundle</parameter>
         <parameter key="namespace">AppBundle</parameter>
+      </parameter>
+      <parameter key="BackOfficeBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/var/www/html/CovoitSymf/src/BackOfficeBundle</parameter>
+        <parameter key="namespace">BackOfficeBundle</parameter>
       </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
@@ -508,7 +514,7 @@
                   <tag name="cache.pool"/>
                   <argument>bv6ADo5k58</argument>
                   <argument>0</argument>
-                  <argument>zUpAKVvDEqH5Cc8l97-A41</argument>
+                  <argument>Vt1LVyxfE70iKZ8u3ZHLXp</argument>
                   <argument>/var/www/html/CovoitSymf/var/cache/dev/pools</argument>
                   <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                   <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -521,7 +527,7 @@
                   <tag name="cache.pool"/>
                   <argument>oHZ8yqHD31</argument>
                   <argument>0</argument>
-                  <argument>zUpAKVvDEqH5Cc8l97-A41</argument>
+                  <argument>Vt1LVyxfE70iKZ8u3ZHLXp</argument>
                   <argument>/var/www/html/CovoitSymf/var/cache/dev/pools</argument>
                   <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                   <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -853,7 +859,7 @@
       <tag name="cache.pool"/>
       <argument>SjFDdj+6Fa</argument>
       <argument>0</argument>
-      <argument>zUpAKVvDEqH5Cc8l97-A41</argument>
+      <argument>Vt1LVyxfE70iKZ8u3ZHLXp</argument>
       <argument>/var/www/html/CovoitSymf/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -1589,7 +1595,7 @@
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5ad9f23a1e5662.90044741</argument>
+            <argument>5ada03c44c33f4.99952534</argument>
           </service>
         </argument>
       </argument>
@@ -1723,7 +1729,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>5ad9f23a1e5662.90044741</argument>
+            <argument>5ada03c44c33f4.99952534</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -2121,7 +2127,9 @@
       <argument type="service">
         <service class="Doctrine\ORM\Configuration" public="false">
           <call method="setEntityNamespaces">
-            <argument type="collection"/>
+            <argument type="collection">
+              <argument key="BackOfficeBundle">BackOfficeBundle\Entity</argument>
+            </argument>
           </call>
           <call method="setMetadataCacheImpl">
             <argument type="service" id="doctrine_cache.providers.doctrine.orm.default_metadata_cache"/>
@@ -2134,7 +2142,21 @@
           </call>
           <call method="setMetadataDriverImpl">
             <argument type="service">
-              <service class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false"/>
+              <service class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false">
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver" public="false">
+                      <argument type="collection">
+                        <argument key="/var/www/html/CovoitSymf/src/BackOfficeBundle/Resources/config/doctrine">BackOfficeBundle\Entity</argument>
+                      </argument>
+                      <call method="setGlobalBasename">
+                        <argument>mapping</argument>
+                      </call>
+                    </service>
+                  </argument>
+                  <argument>BackOfficeBundle\Entity</argument>
+                </call>
+              </service>
             </argument>
           </call>
           <call method="setProxyDir">
@@ -2627,6 +2649,10 @@
       <call method="addPath">
         <argument>/var/www/html/CovoitSymf/vendor/doctrine/doctrine-bundle/Resources/views</argument>
         <argument>Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>/var/www/html/CovoitSymf/src/BackOfficeBundle/Resources/views</argument>
+        <argument>BackOffice</argument>
       </call>
       <call method="addPath">
         <argument>/var/www/html/CovoitSymf/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
