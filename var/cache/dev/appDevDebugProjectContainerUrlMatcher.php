@@ -100,13 +100,17 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        // backoffice_default_index
-        if (rtrim($pathinfo, '/') === '/adminbo') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'backoffice_default_index');
+        if (0 === strpos($pathinfo, '/adminbo')) {
+            // home
+            if ($pathinfo === '/adminbo/home') {
+                return array (  '_controller' => 'BackOfficeBundle\\Controller\\DefaultController::indexAction',  '_route' => 'home',);
             }
 
-            return array (  '_controller' => 'BackOfficeBundle\\Controller\\DefaultController::indexAction',  '_route' => 'backoffice_default_index',);
+            // show
+            if ($pathinfo === '/adminbo/show') {
+                return array (  '_controller' => 'BackOfficeBundle\\Controller\\VoitureController::show',  '_route' => 'show',);
+            }
+
         }
 
         // homepage

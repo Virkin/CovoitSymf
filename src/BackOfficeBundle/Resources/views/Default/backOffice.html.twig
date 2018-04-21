@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Back Office {% endblock %}
+
+{% block header %}
+	<div class="ui red attached stackable menu">
+	  <div class="ui container">
+	    <a class="header item" href="home">
+	    	Back Office	
+	    </a>
+	    <a class="item">
+	      <i class="user icon"></i> User
+	    </a>
+	    <a class="item" href="show">
+	      <i class="car icon"></i> Voiture
+	    </a>
+	    <a class="item">
+	      <i class="map icon"></i> Ville
+	    </a>
+	  </div>
+	</div>
+{% endblock %}
+
+{% block footer %}
+  <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+      <div class="ui horizontal small divided link list">
+        <a class="item">© 2018 Antoine Auffret & Virgile Prin </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

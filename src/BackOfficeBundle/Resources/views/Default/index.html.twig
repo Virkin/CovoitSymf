@@ -1,4 +1,4 @@
-{% extends 'default/backOffice.html.twig' %}
+{% extends 'BackOfficeBundle::Default/backOffice.html.twig' %}
 
 {% block header %}
 	{{ parent() }}
@@ -6,8 +6,12 @@
 
 {% block body %}
 
-<div class="ui raised very padded text container segment">
-  <h2 class="ui header">Bienvenue sur le Back Office</h2>
-</div>
+	<div class="ui raised very padded text container segment">
+	  <h2 class="ui header">Bienvenue sur le Back Office</h2>
+	</div>
 
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
 {% endblock %}
