@@ -8,45 +8,60 @@ class __TwigTemplate_eaaa80eeabe74aaca027f8f607f0bbf5fefab20966cb0e7b2aaffe86f52
         parent::__construct($env);
 
         // line 1
-        $this->parent = $this->loadTemplate("base.html.twig", "BackOfficeBundle:Default:index.html.twig", 1);
+        $this->parent = $this->loadTemplate("default/backOffice.html.twig", "BackOfficeBundle:Default:index.html.twig", 1);
         $this->blocks = array(
+            'header' => array($this, 'block_header'),
             'body' => array($this, 'block_body'),
         );
     }
 
     protected function doGetParent(array $context)
     {
-        return "base.html.twig";
+        return "default/backOffice.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_62f1a7ec8e9ddb77c35faa9735cdd2596d4a0a651b56f9648ff27c803ab522db = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_62f1a7ec8e9ddb77c35faa9735cdd2596d4a0a651b56f9648ff27c803ab522db->enter($__internal_62f1a7ec8e9ddb77c35faa9735cdd2596d4a0a651b56f9648ff27c803ab522db_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BackOfficeBundle:Default:index.html.twig"));
+        $__internal_4dbd39ac06dcf8664b9686b3ce49ff00bb55051d9ae4c764b158a2c266ada912 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_4dbd39ac06dcf8664b9686b3ce49ff00bb55051d9ae4c764b158a2c266ada912->enter($__internal_4dbd39ac06dcf8664b9686b3ce49ff00bb55051d9ae4c764b158a2c266ada912_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BackOfficeBundle:Default:index.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_62f1a7ec8e9ddb77c35faa9735cdd2596d4a0a651b56f9648ff27c803ab522db->leave($__internal_62f1a7ec8e9ddb77c35faa9735cdd2596d4a0a651b56f9648ff27c803ab522db_prof);
+        $__internal_4dbd39ac06dcf8664b9686b3ce49ff00bb55051d9ae4c764b158a2c266ada912->leave($__internal_4dbd39ac06dcf8664b9686b3ce49ff00bb55051d9ae4c764b158a2c266ada912_prof);
 
     }
 
     // line 3
-    public function block_body($context, array $blocks = array())
+    public function block_header($context, array $blocks = array())
     {
-        $__internal_7a5bc1dc39277ad7febb01a49c5a9a51225efe3a2e4e81902fa137e4caafd608 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_7a5bc1dc39277ad7febb01a49c5a9a51225efe3a2e4e81902fa137e4caafd608->enter($__internal_7a5bc1dc39277ad7febb01a49c5a9a51225efe3a2e4e81902fa137e4caafd608_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_6d021361fc3e77d05e8ce0dd09d72ed95b1d74830bc99a1db9cf7b68bb348064 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_6d021361fc3e77d05e8ce0dd09d72ed95b1d74830bc99a1db9cf7b68bb348064->enter($__internal_6d021361fc3e77d05e8ce0dd09d72ed95b1d74830bc99a1db9cf7b68bb348064_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "header"));
 
         // line 4
+        echo "\t";
+        $this->displayParentBlock("header", $context, $blocks);
         echo "
-<div class=\"ui buttons\">
-  <button class=\"ui button\">Cancel</button>
-  <div class=\"or\"></div>
-  <button class=\"ui positive button\">Save</button>
+";
+        
+        $__internal_6d021361fc3e77d05e8ce0dd09d72ed95b1d74830bc99a1db9cf7b68bb348064->leave($__internal_6d021361fc3e77d05e8ce0dd09d72ed95b1d74830bc99a1db9cf7b68bb348064_prof);
+
+    }
+
+    // line 7
+    public function block_body($context, array $blocks = array())
+    {
+        $__internal_6425737da0606be29f68cb95e2231dadca928ad9e840b0639525687e3ebfb89f = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_6425737da0606be29f68cb95e2231dadca928ad9e840b0639525687e3ebfb89f->enter($__internal_6425737da0606be29f68cb95e2231dadca928ad9e840b0639525687e3ebfb89f_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+
+        // line 8
+        echo "
+<div class=\"ui raised very padded text container segment\">
+  <h2 class=\"ui header\">Bienvenue sur le Back Office</h2>
 </div>
 
 ";
         
-        $__internal_7a5bc1dc39277ad7febb01a49c5a9a51225efe3a2e4e81902fa137e4caafd608->leave($__internal_7a5bc1dc39277ad7febb01a49c5a9a51225efe3a2e4e81902fa137e4caafd608_prof);
+        $__internal_6425737da0606be29f68cb95e2231dadca928ad9e840b0639525687e3ebfb89f->leave($__internal_6425737da0606be29f68cb95e2231dadca928ad9e840b0639525687e3ebfb89f_prof);
 
     }
 
@@ -62,7 +77,7 @@ class __TwigTemplate_eaaa80eeabe74aaca027f8f607f0bbf5fefab20966cb0e7b2aaffe86f52
 
     public function getDebugInfo()
     {
-        return array (  40 => 4,  34 => 3,  11 => 1,);
+        return array (  57 => 8,  51 => 7,  41 => 4,  35 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -75,17 +90,18 @@ class __TwigTemplate_eaaa80eeabe74aaca027f8f607f0bbf5fefab20966cb0e7b2aaffe86f52
 
     public function getSourceContext()
     {
-        return new Twig_Source("{% extends 'base.html.twig' %}
+        return new Twig_Source("{% extends 'default/backOffice.html.twig' %}
+
+{% block header %}
+\t{{ parent() }}
+{% endblock %}
 
 {% block body %}
 
-<div class=\"ui buttons\">
-  <button class=\"ui button\">Cancel</button>
-  <div class=\"or\"></div>
-  <button class=\"ui positive button\">Save</button>
+<div class=\"ui raised very padded text container segment\">
+  <h2 class=\"ui header\">Bienvenue sur le Back Office</h2>
 </div>
 
-{% endblock %}
-", "BackOfficeBundle:Default:index.html.twig", "/var/www/html/CovoitSymf/src/BackOfficeBundle/Resources/views/Default/index.html.twig");
+{% endblock %}", "BackOfficeBundle:Default:index.html.twig", "/var/www/html/CovoitSymf/src/BackOfficeBundle/Resources/views/Default/index.html.twig");
     }
 }
