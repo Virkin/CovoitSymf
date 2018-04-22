@@ -1,8 +1,17 @@
-back_office_index:
+index:
+    path: /
+    defaults: { _controller: BackOfficeBundle:Default:index }
+
+home:
     path: /home
     defaults: { _controller: BackOfficeBundle:Default:index }
 
-back_office_show:
-    path: /show
-    defaults: { _controller: BackOfficeBundle:Voiture:show }
+readVoiture:
+    path: /readVoiture
+    defaults: { _controller: BackOfficeBundle:Voiture:read }
+
+addVoiture:
+    path: /addVoiture
+    defaults: { _controller: BackOfficeBundle:Voiture:add }
+
 

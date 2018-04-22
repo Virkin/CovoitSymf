@@ -101,14 +101,28 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
 
         if (0 === strpos($pathinfo, '/adminbo')) {
-            // back_office_index
-            if ($pathinfo === '/adminbo/home') {
-                return array (  '_controller' => 'BackOfficeBundle\\Controller\\DefaultController::indexAction',  '_route' => 'back_office_index',);
+            // index
+            if (rtrim($pathinfo, '/') === '/adminbo') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'index');
+                }
+
+                return array (  '_controller' => 'BackOfficeBundle\\Controller\\DefaultController::indexAction',  '_route' => 'index',);
             }
 
-            // back_office_show
-            if ($pathinfo === '/adminbo/show') {
-                return array (  '_controller' => 'BackOfficeBundle\\Controller\\VoitureController::showAction',  '_route' => 'back_office_show',);
+            // home
+            if ($pathinfo === '/adminbo/home') {
+                return array (  '_controller' => 'BackOfficeBundle\\Controller\\DefaultController::indexAction',  '_route' => 'home',);
+            }
+
+            // readVoiture
+            if ($pathinfo === '/adminbo/readVoiture') {
+                return array (  '_controller' => 'BackOfficeBundle\\Controller\\VoitureController::readAction',  '_route' => 'readVoiture',);
+            }
+
+            // addVoiture
+            if ($pathinfo === '/adminbo/addVoiture') {
+                return array (  '_controller' => 'BackOfficeBundle\\Controller\\VoitureController::addAction',  '_route' => 'addVoiture',);
             }
 
         }
