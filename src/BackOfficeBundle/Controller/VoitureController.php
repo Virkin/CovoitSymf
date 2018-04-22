@@ -7,11 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class VoitureController extends Controller
 {
-	
-	/**
-     * @Route("/show", name="show")
-     */
-	public function show()
+	public function showAction()
 	{	
 		$voitures = $this->getDoctrine()
 	    ->getRepository('BackOfficeBundle:Voiture')

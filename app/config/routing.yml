@@ -1,6 +1,5 @@
 back_office:
-    resource: "@BackOfficeBundle/Controller/"
-    type:     annotation
+    resource: "@BackOfficeBundle/Resources/config/routing.yml"
     prefix:   /adminbo
 
 app:

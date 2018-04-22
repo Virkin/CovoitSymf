@@ -1,0 +1,8 @@
+back_office_index:
+    path: /home
+    defaults: { _controller: BackOfficeBundle:Default:index }
+
+back_office_show:
+    path: /show
+    defaults: { _controller: BackOfficeBundle:Voiture:show }
+

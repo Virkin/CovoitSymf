@@ -7,9 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/home", name="home")
-     */
     public function indexAction()
     {
         return $this->render('BackOfficeBundle:Default:index.html.twig');

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="ui container">
+	<div class="ui container segment">
 	  	<table class="ui celled table">
 			<thead>
 		        <tr>
@@ -13,6 +13,7 @@
 		         	<th>Marque</th>
 		         	<th>Modèle</th>
 		         	<th>Place(s)</th>
+		         	<th>Action</th>
 		        </tr>
 	      	</thead>
 	      	<tbody>
@@ -22,9 +23,25 @@
 					<td>{{voiture.marque}}</td>
 					<td>{{voiture.modele}}</td>
 					<td>{{voiture.nbPlaces}}</td>
+					<td>
+						<div class="ui buttons">
+							  <button class="ui orange button">Edit</button>
+							  <button class="ui red button">Delete</button>
+						</div>
+					</td>
 				</tr>
 			{% endfor %}
 			</tbody>
+			<tfoot class="full-width">
+			    <tr>
+		      		<th></th>
+			      	<th colspan="4">
+			        	<div class="ui right floated small primary labeled icon button">
+			          		<i class="plus icon"></i> Add Car
+			        	</div>
+			      	</th>
+		    	</tr>
+		    </tfoot>
 		</table>
 	</div>
 {% endblock %}
