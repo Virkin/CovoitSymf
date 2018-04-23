@@ -1,0 +1,27 @@
+{% extends 'BackOfficeBundle::Default/backOffice.html.twig' %}
+
+{% block header %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+<div class="ui container segment">
+    <table class="ui celled table">
+    <thead>
+          <tr>
+            <th>Nombre d'internautes total</th>
+          </tr>
+        </thead>
+        <tbody>
+      <tr>
+        <td>{{nb_internautes}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+{% endblock %}
