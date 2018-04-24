@@ -8,7 +8,7 @@
 {% block body %}
 	<div class="ui raised very padded text container segment">
 		
-		{{ form_start(form) }}
+		{{ form_start(form, {'attr':{'class':'ui form'}}) }}
 	
 		<h4 class="ui dividing header">Ajout voiture</h4>
 	  	<div class="two fields">
@@ -28,10 +28,12 @@
 			<label>Nombre de place(s)</label>
 			{{ form_widget(form.nbPlaces, { 'attr': {'placeholder': "Nombre de place(s)"} }) }}
 		</div>
-	    <div class="ui submit">
-	    	{{ form_widget(form.save) }}
+	  
+	    <div class="ui buttons">
+	    	<a href="readVoiture"><button class="ui button">Cancel</button></a>
+	    	<div class="or"></div>
+	    	<{{ form_widget(form.save, {'attr':{'class':'ui positive button'}} ) }}
 	    </div>
-	    
 		{{ form_end(form) }}	
 	</div>
 	
