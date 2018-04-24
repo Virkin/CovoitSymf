@@ -1,0 +1,38 @@
+{% use 'semantic-ui-form-theme.html.twig' %}
+{% extends 'BackOfficeBundle::Default/backOffice.html.twig' %}
+
+{% block header %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="ui raised very padded text container segment">
+
+		{{ form_start(form) }}
+
+		<h4 class="ui dividing header">Ajout ville</h4>
+	  	<div class="two fields">
+	    	<div class="field">
+		      	<label>Ville</label>
+		      	<div class="two fields">
+		        	<div class="field">
+	          		    {{ form_widget(form.ville, { 'attr': {'placeholder': "Ville"} }) }}
+					</div>
+		        	<div class="field">
+		          		{{ form_widget(form.cp, { 'attr': {'placeholder': "Code postal"} }) }}
+		       		</div>
+		      	</div>
+	    	</div>
+		</div>
+	    <div class="ui submit">
+	    	{{ form_widget(form.save) }}
+	    </div>
+
+		{{ form_end(form) }}
+	</div>
+
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+{% endblock %}

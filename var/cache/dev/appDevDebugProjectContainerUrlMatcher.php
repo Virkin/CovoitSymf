@@ -125,9 +125,22 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return array (  '_controller' => 'BackOfficeBundle\\Controller\\VoitureController::addAction',  '_route' => 'addVoiture',);
             }
 
-            // readStatistiques
-            if ($pathinfo === '/adminbo/readStatistiques') {
-                return array (  '_controller' => 'BackOfficeBundle\\Controller\\StatistiquesController::readAction',  '_route' => 'readStatistiques',);
+            if (0 === strpos($pathinfo, '/adminbo/read')) {
+                // readStatistiques
+                if ($pathinfo === '/adminbo/readStatistiques') {
+                    return array (  '_controller' => 'BackOfficeBundle\\Controller\\StatistiquesController::readAction',  '_route' => 'readStatistiques',);
+                }
+
+                // readVille
+                if ($pathinfo === '/adminbo/readVille') {
+                    return array (  '_controller' => 'BackOfficeBundle\\Controller\\VilleController::readAction',  '_route' => 'readVille',);
+                }
+
+            }
+
+            // addVille
+            if ($pathinfo === '/adminbo/addVille') {
+                return array (  '_controller' => 'BackOfficeBundle\\Controller\\VilleController::addAction',  '_route' => 'addVille',);
             }
 
         }

@@ -17,3 +17,11 @@ addVoiture:
 readStatistiques:
     path: /readStatistiques
     defaults: { _controller: BackOfficeBundle:Statistiques:read }
+
+readVille:
+    path: /readVille
+    defaults: { _controller: BackOfficeBundle:Ville:read }
+
+addVille:
+    path: /addVille
+    defaults: { _controller: BackOfficeBundle:Ville:add }
