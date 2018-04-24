@@ -16,17 +16,17 @@
 		      	<label>Identification</label>
 		      	<div class="two fields">
 		        	<div class="field">
-		          		{{ form_widget(form.marque) }}
-		        	</div>
+	          		    {{ form_widget(form.marque, { 'attr': {'placeholder': "Marque"} }) }}
+					</div>
 		        	<div class="field">
-		          		{{ form_widget(form.modele) }}
+		          		{{ form_widget(form.modele, { 'attr': {'placeholder': "Modele"} }) }}
 		       		</div>
 		      	</div>
 	    	</div>
 		</div>
 		<div class="field">
 			<label>Nombre de place(s)</label>
-			{{ form_widget(form.nbPlaces) }}
+			{{ form_widget(form.nbPlaces, { 'attr': {'placeholder': "Nombre de place(s)"} }) }}
 		</div>
 	    <div class="ui submit">
 	    	{{ form_widget(form.save) }}

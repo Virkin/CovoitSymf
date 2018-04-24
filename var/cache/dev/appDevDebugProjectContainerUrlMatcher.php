@@ -127,7 +127,7 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
             // readStatistiques
             if ($pathinfo === '/adminbo/readStatistiques') {
-                return array (  '_controller' => 'BackOfficeBundle:Statistiques:read',  '_route' => 'readStatistiques',);
+                return array (  '_controller' => 'BackOfficeBundle\\Controller\\StatistiquesController::readAction',  '_route' => 'readStatistiques',);
             }
 
         }
