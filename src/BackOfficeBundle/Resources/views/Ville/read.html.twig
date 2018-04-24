@@ -12,6 +12,13 @@
 			        <th>Id</th>
 		         	<th>Ville</th>
 		         	<th>Code postal</th>
+							<th>
+		         		<a href="addVille">
+			        		<div class="ui right floated small primary labeled icon button">
+			          			<i class="plus icon"></i> Add City
+			        		</div>
+			        	</a>
+		         	</th>
 		        </tr>
 	      	</thead>
 	      	<tbody>
@@ -20,21 +27,19 @@
 					<td>{{ville.id}}</td>
 					<td>{{ville.ville}}</td>
 					<td>{{ville.cp}}</td>
+					<td>
+						<div class="ui buttons">
+							  <div class="ui yellow icon inverted button">
+							  	<i class="edit icon"></i>
+							  </div>
+							  <div class="ui red icon inverted button">
+							  	<i class="trash icon"></i>
+							  </div>
+						</div>
+					</td>
 				</tr>
 			{% endfor %}
 			</tbody>
-			<tfoot class="full-width">
-			    <tr>
-		      		<th></th>
-			      	<th colspan="4">
-			        	<a href="addVille">
-			        		<div class="ui right floated small primary labeled icon button">
-			          			<i class="plus icon"></i> Add City
-			        		</div>
-			        	</a>
-			      	</th>
-		    	</tr>
-		    </tfoot>
 		</table>
 	</div>
 {% endblock %}
