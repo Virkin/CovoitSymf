@@ -5,20 +5,20 @@
 {% block header %}
 	<div class="ui attached stackable menu">
 	  <div class="ui container">
-	    <a class="header item" href="home">
+	    <a class="header {% if current=='Home'%}active{% endif %} item" href="home">
 	    	Back Office
 	    </a>
-	    <a class="item">
+	    <a class=" {% if current=='User'%}active{% endif %} item">
 	      <i class="user icon"></i> User
 	    </a>
-	    <a class="item" href="readVoiture">
+	    <a class="{% if current=='Voiture'%}active{% endif %} item" href="readVoiture">
 	      <i class="car icon"></i> Voiture
 	    </a>
-	    <a class="item" href="readVille">
+	    <a class="{% if current=='Ville'%}active{% endif %} item" href="readVille">
 	      <i class="map icon"></i> Ville
 	    </a>
-			<a class="item" href="readStatistiques">
-	      <i class="chart bar icon"></i> Statistiques
+		<a class="{% if current=='Stats'%}active{% endif %} item" href="readStatistiques">
+	      <i class="chart bar icon"></i> Stats
 	    </a>
 	  </div>
 	</div>
