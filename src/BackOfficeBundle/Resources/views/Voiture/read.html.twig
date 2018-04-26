@@ -6,6 +6,17 @@
 {% endblock %}
 
 {% block body %}
+
+{% if voitures == NULL %}
+	<div class="ui raised very padded text container segment">
+	  <h2 class="ui header">Pas de voiture</h2>
+	  	<a href="addVoiture">
+			<div class="ui right floated small primary labeled icon button">
+	  			<i class="plus icon"></i> Add Car
+			</div>
+		</a>
+	</div>
+{% else %}
 	<div class="ui container segment">
 	  	<table class="ui celled table">
 			<thead>
@@ -35,9 +46,11 @@
 							  <div class="ui yellow icon inverted button">
 							  	<i class="edit icon"></i>
 							  </div>
-							  <div class="ui red icon inverted button">
-							  	<i class="trash icon"></i>
-							  </div>
+							  <a href="delete/{{voiture.id}}">
+								  <div class="ui red icon inverted button">
+								  	<i class="trash icon"></i>
+								  </div>
+							  </a>
 						</div>
 					</td>
 				</tr>
@@ -45,6 +58,8 @@
 			</tbody>
 		</table>
 	</div>
+{% endif %}
+
 {% endblock %}
 
 {% block footer %}
