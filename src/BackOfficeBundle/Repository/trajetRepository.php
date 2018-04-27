@@ -12,10 +12,12 @@ class trajetRepository extends \Doctrine\ORM\EntityRepository
 {
   public function list($id)
   {
-    return $this->getEntityManager()->createQuery(
-      'SELECT trajet
-      FROM BackOfficeBundle:Trajet trajet
-      WHERE trajet.internaute = :internaute_id'
-    )->setParameters(array('internaute_id' => $id))->getResult();
+    return $this->getEntityManager()
+    ->createQuery(
+    	'SELECT trajet.nbKm as nbKm, trajet.date as date, user.nom as username
+    	FROM BackOfficeBundle:Trajet trajet
+    	JOIN BackOfficeBundle:Internaute user WITH user.id=trajet.internaute'
+    )
+    ->getResult();
   }
 }

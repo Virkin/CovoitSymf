@@ -11,21 +11,19 @@
 	  	<table class="ui celled table">
 			<thead>
 		        <tr>
-			        <th>Id</th>
-		         	<th>Id internaute</th>
-		         	<th>Id ville arrivée</th>
-		         	<th>Id ville départ</th>
-							<th>Nombre kilomètres</th>
-							<th>Date</th>
+		         	<th>Nombre kilomètres</th>
+		         	<!--<th>Id ville arrivée</th>-->
+		         	<!--<th>Id ville départ</th>-->
+					<th>Date</th>
+					<th>Username</th>
 		        </tr>
 	      	</thead>
 	      	<tbody>
 			{% for trajet in trajets %}
 				<tr>
-					<td>{{trajet.id}}</td>
-					<td>{{trajet.internaute}}</td>
 					<td>{{trajet.nbKm}}</td>
-					<td>{{trajet.date}}</td>
+					<td>{{trajet.date|date('Y-m-d H:i:s')}}</td>
+					<td>{{trajet.username}}</td>
 				</tr>
 			{% endfor %}
 			</tbody>
