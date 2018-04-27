@@ -81,9 +81,9 @@ class Trajet
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getDate($format='Y-m-d H:i:s')
     {
-        return $this->date;
+        return $this->date->format($format);
     }
 
     /**

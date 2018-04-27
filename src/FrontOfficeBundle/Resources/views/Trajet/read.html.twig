@@ -1,0 +1,39 @@
+{% extends 'FrontOfficeBundle::Default/frontOffice.html.twig' %}
+{% set current = 'Trajet' %}
+
+{% block header %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<div class="ui container segment">
+	  	<table class="ui celled table">
+			<thead>
+		        <tr>
+			        <th>Id</th>
+		         	<th>Id internaute</th>
+		         	<th>Id ville arrivée</th>
+		         	<th>Id ville départ</th>
+							<th>Nombre kilomètres</th>
+							<th>Date</th>
+		        </tr>
+	      	</thead>
+	      	<tbody>
+			{% for trajet in trajets %}
+				<tr>
+					<td>{{trajet.id}}</td>
+					<td>{{trajet.internaute}}</td>
+					<td>{{trajet.nbKm}}</td>
+					<td>{{trajet.date}}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+{% endblock %}

@@ -110,4 +110,3 @@ class Voiture
         return $this->id;
     }
 }
-

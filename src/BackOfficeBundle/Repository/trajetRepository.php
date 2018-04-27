@@ -10,4 +10,12 @@ namespace BackOfficeBundle\Repository;
  */
 class trajetRepository extends \Doctrine\ORM\EntityRepository
 {
+  public function list($id)
+  {
+    return $this->getEntityManager()->createQuery(
+      'SELECT trajet
+      FROM BackOfficeBundle:Trajet trajet
+      WHERE trajet.internaute = :internaute_id'
+    )->setParameters(array('internaute_id' => $id))->getResult();
+  }
 }
