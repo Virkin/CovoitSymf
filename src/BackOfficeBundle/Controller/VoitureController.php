@@ -57,6 +57,7 @@ class VoitureController extends Controller
 	function deleteAction(Request $request, $id)
 	{
 		$form = $this->createFormBuilder()
+            ->add('cancel', SubmitType::class, array('label' => 'Cancel'))
             ->add('delete', SubmitType::class, array('label' => 'Delete'))
             ->getForm();
 
@@ -64,13 +65,18 @@ class VoitureController extends Controller
 
 		if ($form->isSubmitted() && $form->isValid()) 
         {
-			$em = $this->getDoctrine()->getManager();
-	        $voiture = $this->getDoctrine()
-	        ->getRepository('BackOfficeBundle:Voiture')
-	        ->find($id);
-	        $em->remove($voiture);
-	        $em->flush($voiture);
-	        return $this->redirectToRoute('readVoiture');
+			if ($form->get('delete')->isClicked())
+			{
+				$em = $this->getDoctrine()->getManager();
+		        $voiture = $this->getDoctrine()
+		        ->getRepository('BackOfficeBundle:Voiture')
+		        ->find($id);
+		        $em->remove($voiture);
+		        $em->flush($voiture);
+			}
+
+			return $this->redirectToRoute('readVoiture');
+		
 		}
 		return $this->render('BackOfficeBundle:Voiture:delete.html.twig', array(
             'form' => $form->createView(),

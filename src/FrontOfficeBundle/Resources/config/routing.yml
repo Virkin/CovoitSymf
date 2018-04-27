@@ -2,6 +2,6 @@ front_office_homepage:
     path:     /
     defaults: { _controller: FrontOfficeBundle:Default:index }
 
-home:
+home2:
     path:     /home
     defaults: { _controller: FrontOfficeBundle:Default:index }
