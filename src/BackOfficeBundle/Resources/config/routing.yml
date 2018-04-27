@@ -2,7 +2,7 @@ index:
     path: /
     defaults: { _controller: BackOfficeBundle:Default:index }
 
-home:
+backHome:
     path: /home
     defaults: { _controller: BackOfficeBundle:Default:index }
 
@@ -29,6 +29,3 @@ readVille:
 addVille:
     path: /addVille
     defaults: { _controller: BackOfficeBundle:Ville:add }
-
-
-
