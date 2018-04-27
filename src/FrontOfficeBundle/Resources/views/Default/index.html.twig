@@ -1,0 +1,18 @@
+{% extends 'FrontOfficeBundle::Default/frontOffice.html.twig' %}
+{% set current = 'Home' %}
+
+{% block header %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<div class="ui raised very padded text container segment">
+	  <h2 class="ui header">Bienvenue sur le Front Office</h2>
+	</div>
+
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+{% endblock %}

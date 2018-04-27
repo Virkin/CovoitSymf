@@ -1,0 +1,7 @@
+front_office_homepage:
+    path:     /
+    defaults: { _controller: FrontOfficeBundle:Default:index }
+
+home:
+    path:     /home
+    defaults: { _controller: FrontOfficeBundle:Default:index }
