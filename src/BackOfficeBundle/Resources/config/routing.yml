@@ -14,8 +14,12 @@ addVoiture:
     path: /addVoiture
     defaults: { _controller: BackOfficeBundle:Voiture:add }
 
+editVoiture:
+    path: /editVoiture/{id}
+    defaults: { _controller: BackOfficeBundle:Voiture:edit }
+
 deleteVoiture:
-    path: /delete/{id}
+    path: /deleteVoiture/{id}
     defaults: { _controller: BackOfficeBundle:Voiture:delete }
 
 readStatistiques:

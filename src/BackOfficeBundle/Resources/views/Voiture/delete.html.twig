@@ -12,7 +12,7 @@
 		<h4 class="ui dividing header">Supprimer voiture</h4>
 
 	    <div class="ui buttons">
-	    	{{ form_widget(form.cancel, {'attr':{'class':'ui button'}} ) }}
+	    	<a href="{{ path('readVoiture') }}">{{ form_widget(form.cancel, {'attr':{'class':'ui button'}} ) }}</a>
 	    	<div class="or"></div>
 	    	{{ form_widget(form.delete, {'attr':{'class':'ui negative button'}} ) }}
 	    </div>

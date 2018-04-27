@@ -29,7 +29,7 @@
 		</div>
 
 	    <div class="ui buttons">
-	    	<a href="readVoiture"><button class="ui button">Cancel</button></a>
+	    	<a href="{{ path('readVoiture') }}">{{ form_widget(form.cancel, {'attr':{'class':'ui button'}} ) }}</a>
 	    	<div class="or"></div>
 	    	{{ form_widget(form.save, {'attr':{'class':'ui positive button'}} ) }}
 	    </div>
