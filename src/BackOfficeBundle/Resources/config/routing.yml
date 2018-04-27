@@ -14,6 +14,10 @@ addVoiture:
     path: /addVoiture
     defaults: { _controller: BackOfficeBundle:Voiture:add }
 
+deleteVoiture:
+    path: /delete/{id}
+    defaults: { _controller: BackOfficeBundle:Voiture:delete }
+
 readStatistiques:
     path: /readStatistiques
     defaults: { _controller: BackOfficeBundle:Statistiques:read }
@@ -25,3 +29,6 @@ readVille:
 addVille:
     path: /addVille
     defaults: { _controller: BackOfficeBundle:Ville:add }
+
+
+

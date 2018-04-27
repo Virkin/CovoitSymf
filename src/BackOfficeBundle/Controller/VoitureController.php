@@ -18,9 +18,7 @@ class VoitureController extends Controller
 	    ->findAll();
 
 	    if (!$voitures) {
-	        throw $this->createNotFoundException(
-	                'Aucune voiture trouvé'
-	        );
+	        $voitures = NULL;
 	    }
 
 	    return $this->render('BackOfficeBundle:Voiture:read.html.twig', array(
@@ -52,6 +50,29 @@ class VoitureController extends Controller
 	    }
 
         return $this->render('BackOfficeBundle:Voiture:add.html.twig', array(
+            'form' => $form->createView(),
+        ));
+	}
+
+	function deleteAction(Request $request, $id)
+	{
+		$form = $this->createFormBuilder()
+            ->add('delete', SubmitType::class, array('label' => 'Delete'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+		if ($form->isSubmitted() && $form->isValid()) 
+        {
+			$em = $this->getDoctrine()->getManager();
+	        $voiture = $this->getDoctrine()
+	        ->getRepository('BackOfficeBundle:Voiture')
+	        ->find($id);
+	        $em->remove($voiture);
+	        $em->flush($voiture);
+	        return $this->redirectToRoute('readVoiture');
+		}
+		return $this->render('BackOfficeBundle:Voiture:delete.html.twig', array(
             'form' => $form->createView(),
         ));
 	}
