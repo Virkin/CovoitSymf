@@ -3,12 +3,9 @@
 namespace BackOfficeBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\HttpFoundation\Request;
 use BackOfficeBundle\Entity\Voiture;
+use BackOfficeBundle\Form\VoitureType;
 
 class VoitureController extends Controller
 {
@@ -31,13 +28,7 @@ class VoitureController extends Controller
 	{
 		$voiture = new Voiture();
 
-        $form = $this->createFormBuilder($voiture)
-            ->add('marque', TextType::class)
-            ->add('modele', TextType::class)
-            ->add('nbPlaces', NumberType::class)
-            ->add('cancel', ButtonType::class, array('label' => 'Cancel'))
-            ->add('save', SubmitType::class, array('label' => 'Save'))
-            ->getForm();
+        $form = $this->createForm(VoitureType::class, $voiture);
 
         $form->handleRequest($request);
       
@@ -62,13 +53,7 @@ class VoitureController extends Controller
         ->getRepository('BackOfficeBundle:Voiture')
         ->find($id);
 
-        $form = $this->createFormBuilder($voiture)
-            ->add('marque', TextType::class)
-            ->add('modele', TextType::class)
-            ->add('nbPlaces', NumberType::class)
-            ->add('cancel', ButtonType::class, array('label' => 'Cancel'))
-            ->add('save', SubmitType::class, array('label' => 'Save'))
-            ->getForm();
+    	$form = $this->createForm(VoitureType::class, $voiture);
 
         $form->handleRequest($request);
       
