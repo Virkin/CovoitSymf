@@ -9,10 +9,9 @@
 
 		{{ form_start(form, {'attr':{'class':'ui form'}}) }}
 
-		<h4 class="ui dividing header">Ajout ville</h4>
+		<h4 class="ui dividing header">Ville</h4>
 	  	<div class="two fields">
 	    	<div class="field">
-		      	<label>Ville</label>
 		      	<div class="two fields">
 		        	<div class="field">
 	          		    {{ form_widget(form.ville, { 'attr': {'placeholder': "Ville"} }) }}
@@ -24,7 +23,7 @@
 	    	</div>
 		</div>
 		<div class="ui buttons">
-			<a href="readVille"><button class="ui button">Cancel</button></a>
+		<a href="{{ path('readVille') }}">{{ form_widget(form.cancel, {'attr':{'class':'ui button'}} ) }}</a>
 			<div class="or"></div>
 		 {{ form_widget(form.save, {'attr':{'class':'ui positive button'}} ) }}
 		</div>

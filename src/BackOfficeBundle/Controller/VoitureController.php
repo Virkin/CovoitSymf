@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BackOfficeBundle\Entity\Voiture;
 use BackOfficeBundle\Form\VoitureType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 
 class VoitureController extends Controller
 {
@@ -42,7 +44,7 @@ class VoitureController extends Controller
 	        return $this->redirectToRoute('readVoiture');
 	    }
 
-        return $this->render('BackOfficeBundle:Voiture:add.html.twig', array(
+        return $this->render('BackOfficeBundle:Voiture:form.html.twig', array(
             'form' => $form->createView(),
         ));
 	}
@@ -67,7 +69,7 @@ class VoitureController extends Controller
 	        return $this->redirectToRoute('readVoiture');
 	    }
 
-        return $this->render('BackOfficeBundle:Voiture:add.html.twig', array(
+        return $this->render('BackOfficeBundle:Voiture:form.html.twig', array(
             'form' => $form->createView(),
         ));
 	}

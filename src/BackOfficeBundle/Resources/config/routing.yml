@@ -33,3 +33,11 @@ readVille:
 addVille:
     path: /addVille
     defaults: { _controller: BackOfficeBundle:Ville:add }
+
+editVille:
+    path: /editVille/{id}
+    defaults: { _controller: BackOfficeBundle:Ville:edit }
+
+deleteVillz:
+    path: /deleteVille/{id}
+    defaults: { _controller: BackOfficeBundle:Ville:delete }
