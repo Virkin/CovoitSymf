@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class VoitureType extends AbstractType
 {
@@ -18,7 +19,7 @@ class VoitureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder 
-            ->add('marque', TextType::class)
+            ->add('marque', EntityType::class, array('class' => 'BackOfficeBundle:Marque', 'choice_label' => 'nom'))
             ->add('modele', TextType::class)
             ->add('nbPlaces', NumberType::class)
             ->add('cancel', ButtonType::class, array('label' => 'Cancel'))

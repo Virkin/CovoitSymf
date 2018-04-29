@@ -10,11 +10,6 @@ class Voiture
     /**
      * @var string
      */
-    private $marque;
-
-    /**
-     * @var string
-     */
     private $modele;
 
     /**
@@ -27,30 +22,11 @@ class Voiture
      */
     private $id;
 
-
     /**
-     * Set marque
-     *
-     * @param string $marque
-     *
-     * @return Voiture
+     * @var \BackOfficeBundle\Entity\Marque
      */
-    public function setMarque($marque)
-    {
-        $this->marque = $marque;
+    private $marque;
 
-        return $this;
-    }
-
-    /**
-     * Get marque
-     *
-     * @return string
-     */
-    public function getMarque()
-    {
-        return $this->marque;
-    }
 
     /**
      * Set modele
@@ -109,4 +85,29 @@ class Voiture
     {
         return $this->id;
     }
+
+    /**
+     * Set marque
+     *
+     * @param \BackOfficeBundle\Entity\Marque $marque
+     *
+     * @return Voiture
+     */
+    public function setMarque(\BackOfficeBundle\Entity\Marque $marque = null)
+    {
+        $this->marque = $marque;
+
+        return $this;
+    }
+
+    /**
+     * Get marque
+     *
+     * @return \BackOfficeBundle\Entity\Marque
+     */
+    public function getMarque()
+    {
+        return $this->marque;
+    }
 }
+

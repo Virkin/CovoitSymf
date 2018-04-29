@@ -15,7 +15,7 @@ class TrajetController extends Controller
 	function readAction(Request $id)
 	{
 		$em = $this->getDoctrine()->getManager();
-		$trajets = $this->getDoctrine()->getManager()->getRepository('BackOfficeBundle:Trajet')->list($id);
+		$trajets = $this->getDoctrine()->getManager()->getRepository('BackOfficeBundle:Trajet')->findAll();
 
 	    if (!$trajets) {
 	        $trajets = NULL;

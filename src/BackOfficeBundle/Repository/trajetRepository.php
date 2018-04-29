@@ -10,7 +10,7 @@ namespace BackOfficeBundle\Repository;
  */
 class trajetRepository extends \Doctrine\ORM\EntityRepository
 {
-  public function list($id)
+  public function findAll()
   {
     return $this->getEntityManager()
     ->createQuery(

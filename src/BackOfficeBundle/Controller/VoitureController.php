@@ -13,9 +13,7 @@ class VoitureController extends Controller
 {
 	function readAction()
 	{	
-		$voitures = $this->getDoctrine()
-	    ->getRepository('BackOfficeBundle:Voiture')
-	    ->findAll();
+		$voitures = $this->getDoctrine()->getManager()->getRepository('BackOfficeBundle:Voiture')->findAll();
 
 	    if (!$voitures) {
 	        $voitures = NULL;

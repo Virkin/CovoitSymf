@@ -23,9 +23,9 @@ class Trajet
     private $id;
 
     /**
-     * @var \BackOfficeBundle\Entity\Internaute
+     * @var \BackOfficeBundle\Entity\Ville
      */
-    private $internaute;
+    private $villeDep;
 
     /**
      * @var \BackOfficeBundle\Entity\Ville
@@ -33,9 +33,9 @@ class Trajet
     private $villeArr;
 
     /**
-     * @var \BackOfficeBundle\Entity\Ville
+     * @var \BackOfficeBundle\Entity\Internaute
      */
-    private $villeDep;
+    private $internaute;
 
 
     /**
@@ -81,9 +81,9 @@ class Trajet
      *
      * @return \DateTime
      */
-    public function getDate($format='Y-m-d H:i:s')
+    public function getDate()
     {
-        return $this->date->format($format);
+        return $this->date;
     }
 
     /**
@@ -97,27 +97,27 @@ class Trajet
     }
 
     /**
-     * Set internaute
+     * Set villeDep
      *
-     * @param \BackOfficeBundle\Entity\Internaute $internaute
+     * @param \BackOfficeBundle\Entity\Ville $villeDep
      *
      * @return Trajet
      */
-    public function setInternaute(\BackOfficeBundle\Entity\Internaute $internaute = null)
+    public function setVilleDep(\BackOfficeBundle\Entity\Ville $villeDep = null)
     {
-        $this->internaute = $internaute;
+        $this->villeDep = $villeDep;
 
         return $this;
     }
 
     /**
-     * Get internaute
+     * Get villeDep
      *
-     * @return \BackOfficeBundle\Entity\Internaute
+     * @return \BackOfficeBundle\Entity\Ville
      */
-    public function getInternaute()
+    public function getVilleDep()
     {
-        return $this->internaute;
+        return $this->villeDep;
     }
 
     /**
@@ -145,26 +145,27 @@ class Trajet
     }
 
     /**
-     * Set villeDep
+     * Set internaute
      *
-     * @param \BackOfficeBundle\Entity\Ville $villeDep
+     * @param \BackOfficeBundle\Entity\Internaute $internaute
      *
      * @return Trajet
      */
-    public function setVilleDep(\BackOfficeBundle\Entity\Ville $villeDep = null)
+    public function setInternaute(\BackOfficeBundle\Entity\Internaute $internaute = null)
     {
-        $this->villeDep = $villeDep;
+        $this->internaute = $internaute;
 
         return $this;
     }
 
     /**
-     * Get villeDep
+     * Get internaute
      *
-     * @return \BackOfficeBundle\Entity\Ville
+     * @return \BackOfficeBundle\Entity\Internaute
      */
-    public function getVilleDep()
+    public function getInternaute()
     {
-        return $this->villeDep;
+        return $this->internaute;
     }
 }
+

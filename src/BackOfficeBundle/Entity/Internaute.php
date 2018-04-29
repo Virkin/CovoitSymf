@@ -33,14 +33,14 @@ class Internaute
     private $id;
 
     /**
-     * @var \BackOfficeBundle\Entity\Ville
-     */
-    private $ville;
-
-    /**
      * @var \BackOfficeBundle\Entity\Voiture
      */
     private $voiture;
+
+    /**
+     * @var \BackOfficeBundle\Entity\Ville
+     */
+    private $ville;
 
 
     /**
@@ -150,30 +150,6 @@ class Internaute
     }
 
     /**
-     * Set ville
-     *
-     * @param \BackOfficeBundle\Entity\Ville $ville
-     *
-     * @return Internaute
-     */
-    public function setVille(\BackOfficeBundle\Entity\Ville $ville = null)
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
-
-    /**
-     * Get ville
-     *
-     * @return \BackOfficeBundle\Entity\Ville
-     */
-    public function getVille()
-    {
-        return $this->ville;
-    }
-
-    /**
      * Set voiture
      *
      * @param \BackOfficeBundle\Entity\Voiture $voiture
@@ -196,4 +172,29 @@ class Internaute
     {
         return $this->voiture;
     }
+
+    /**
+     * Set ville
+     *
+     * @param \BackOfficeBundle\Entity\Ville $ville
+     *
+     * @return Internaute
+     */
+    public function setVille(\BackOfficeBundle\Entity\Ville $ville = null)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return \BackOfficeBundle\Entity\Ville
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
 }
+

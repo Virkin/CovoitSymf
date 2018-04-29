@@ -28,14 +28,14 @@
         <option name="fixed"/>
       </options>
     </field>
-    <many-to-one field="ville" target-entity="Ville" fetch="LAZY">
-      <join-columns>
-        <join-column name="ville_id" referenced-column-name="id"/>
-      </join-columns>
-    </many-to-one>
     <many-to-one field="voiture" target-entity="Voiture" fetch="LAZY">
       <join-columns>
         <join-column name="voiture_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ville" target-entity="Ville" fetch="LAZY">
+      <join-columns>
+        <join-column name="ville_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>

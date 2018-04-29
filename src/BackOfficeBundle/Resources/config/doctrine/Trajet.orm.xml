@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="BackOfficeBundle\Entity\Trajet" repository-class="BackOfficeBundle\Repository\trajetRepository" table="trajet">
+  <entity name="BackOfficeBundle\Entity\Trajet" table="trajet">
     <indexes>
       <index name="internaute_id" columns="internaute_id"/>
       <index name="ville_dep_id" columns="ville_dep_id"/>
@@ -11,9 +11,9 @@
     </id>
     <field name="nbKm" type="float" column="nb_km" precision="10" scale="0" nullable="false"/>
     <field name="date" type="datetime" column="date" nullable="false"/>
-    <many-to-one field="internaute" target-entity="Internaute" fetch="LAZY">
+    <many-to-one field="villeDep" target-entity="Ville" fetch="LAZY">
       <join-columns>
-        <join-column name="internaute_id" referenced-column-name="id"/>
+        <join-column name="ville_dep_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <many-to-one field="villeArr" target-entity="Ville" fetch="LAZY">
@@ -21,9 +21,9 @@
         <join-column name="ville_arr_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="villeDep" target-entity="Ville" fetch="LAZY">
+    <many-to-one field="internaute" target-entity="Internaute" fetch="LAZY">
       <join-columns>
-        <join-column name="ville_dep_id" referenced-column-name="id"/>
+        <join-column name="internaute_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>
