@@ -1,0 +1,29 @@
+{% extends 'BackOfficeBundle::Voiture/read.html.twig' %}
+
+{% block header %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="ui raised very padded text container segment">
+
+		{{ form_start(form, {'attr':{'class':'ui form'}}) }}
+
+		<h4 class="ui dividing header">Marque</h4>
+	  	<div class="two fields">
+	    	<div class="field">
+      		    {{ form_widget(form.nom, { 'attr': {'placeholder': "Nom"} }) }}
+			</div>
+			<div class="ui buttons">
+		    	<a href="{{ path('addVoiture') }}">{{ form_widget(form.cancel, {'attr':{'class':'ui button'}} ) }}</a>
+		    	<div class="or"></div>
+		    	{{ form_widget(form.save, {'attr':{'class':'ui positive button'}} ) }}
+		    </div>
+		</div>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+{% endblock %}

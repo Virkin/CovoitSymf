@@ -22,6 +22,10 @@ deleteVoiture:
     path: /deleteVoiture/{id}
     defaults: { _controller: BackOfficeBundle:Voiture:delete }
 
+addMarque:
+    path: /addMarque
+    defaults: { _controller: BackOfficeBundle:Voiture:addMarque }
+
 readStatistiques:
     path: /readStatistiques
     defaults: { _controller: BackOfficeBundle:Statistiques:read }

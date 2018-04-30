@@ -14,8 +14,13 @@
 	    	<div class="field">
 		      	<label>Identification</label>
 		      	<div class="two fields">
-		        	<div class="field">
-	          		    {{ form_widget(form.marque, { 'attr': {'class':'ui fluid dropdown', 'placeholder': "Marque"} }) }}
+		        	<div class="ui right labeled input">
+	          		    {{ form_widget(form.marque, { 'attr': {'class':'ui fluid dropdown', 'placeholder':"Marque"} }) }}
+	          		    <a href="{{ path('addMarque') }}">
+		          		    <div class="ui label">
+	    						<i class="plus icon"></i>
+	  						</div>
+  						</a>
 					</div>
 		        	<div class="field" >
 		          		{{ form_widget(form.modele, { 'attr': {'placeholder': "Modele"} }) }}
