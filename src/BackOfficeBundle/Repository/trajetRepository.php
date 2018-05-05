@@ -22,4 +22,15 @@ class trajetRepository extends \Doctrine\ORM\EntityRepository
     )
     ->getResult();
   }
+  public function findAllOrderedByName($slug)
+  {
+  	$search = $slug;
+  	$search .= "%";
+  	return $this->getEntityManager()
+  		->createQuery(
+  			'SELECT internaute FROM BackOfficeBundle:Internaute internaute WHERE internaute.actif=1 AND UPPER(internaute.nom) LIKE UPPER(:search) ORDER BY internaute.nom ASC'
+  		)
+  		->setParameter('search', $search)
+  		->getResult();
+  }
 }

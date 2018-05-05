@@ -12,7 +12,7 @@ use BackOfficeBundle\Repository\TrajetRepository;
 
 class TrajetController extends Controller
 {
-	function readAction(Request $id)
+	function readAction()
 	{
 		$em = $this->getDoctrine()->getManager();
 		$trajets = $this->getDoctrine()->getManager()->getRepository('BackOfficeBundle:Trajet')->findAll();
@@ -24,5 +24,29 @@ class TrajetController extends Controller
 	    return $this->render('FrontOfficeBundle:Trajet:read.html.twig', array(
 	        'trajets' => $trajets,
 	    ));
+	}
+
+	function showAction()
+	{
+		if (! isset($_POST['input_search']))
+		$slug = "";
+		else
+		$slug = $_POST['input_search'];
+
+		$trajet = $this->getDoctrine()
+		->getRepository('BackOfficeBundle:Trajet')
+		->findAllOrderedByName($slug);
+
+
+		if (!$trajet) {
+		throw $this->createNotFoundException(
+		'Aucun trajet trouvé'
+		);
+		}
+
+		return $this->render('BackOfficeBundle:Trajet:read.html.twig', array(
+		'trajet' => $trajets,
+		'slug'=> $slug
+		));
 	}
 }
