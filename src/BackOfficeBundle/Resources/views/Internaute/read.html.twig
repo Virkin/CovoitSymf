@@ -1,0 +1,73 @@
+{% extends 'BackOfficeBundle::Default/backOffice.html.twig' %}
+{% set current = 'User' %}
+
+{% block header %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+{% if internautes == NULL %}
+	<div class="ui raised very padded text container segment">
+	  <h2 class="ui header">Pas d'internaute</h2>
+	  	<a href="addInternaute">
+			<div class="ui right floated small primary labeled icon button">
+	  			<i class="plus icon"></i> Add internaute
+			</div>
+		</a>
+	</div>
+{% else %}
+	<div class="ui container segment">
+	  	<table class="ui celled table">
+			<thead>
+		        <tr>
+			        <th>Id</th>
+		         	<th>Nom</th>
+		         	<th>Prenom</th>
+		         	<th>Tel</th>
+		         	<th>Mail</th>
+		         	<th>Voiture</th>
+		         	<th>
+		         		<a href="addInternaute">
+			        		<div class="ui right floated small primary labeled icon button">
+			          			<i class="plus icon"></i> Add Internaute
+			        		</div>
+			        	</a>
+		         	</th>
+		        </tr>
+	      	</thead>
+	      	<tbody>
+			{% for internaute in internautes %}
+				<tr>
+					<td>{{internaute.id}}</td>
+					<td>{{internaute.nom}}</td>
+					<td>{{internaute.prenom}}</td>
+					<td>{{internaute.tel}}</td>
+					<td>{{internaute.mail}}</td>
+					<td>{{internaute.voiture}}</td>
+					<td>
+						<div class="ui buttons">
+							  <a href="editInternaute/{{internaute.id}}">
+								  <div class="ui yellow icon inverted button">
+								  	<i class="edit icon"></i>
+								  </div>
+							  </a>
+							  <a href="deleteInternaute/{{internaute.id}}">
+								  <div class="ui red icon inverted button">
+								  	<i class="trash icon"></i>
+								  </div>
+							  </a>
+						</div>
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endif %}
+
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+{% endblock %}

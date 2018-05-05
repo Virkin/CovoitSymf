@@ -109,5 +109,10 @@ class Voiture
     {
         return $this->marque;
     }
+
+    public function __toString() 
+    {
+        return $this->marque.' '.$this->modele;
+    }
 }
 

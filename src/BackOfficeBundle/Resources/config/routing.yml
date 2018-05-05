@@ -6,6 +6,22 @@ backHome:
     path: /home
     defaults: { _controller: BackOfficeBundle:Default:index }
 
+readInternaute:
+    path: /readInternaute
+    defaults: { _controller: BackOfficeBundle:Internaute:read }
+
+addInternaute:
+    path: /addInternaute
+    defaults: { _controller: BackOfficeBundle:Internaute:add }
+
+editInternaute:
+    path: /editInternaute/{id}
+    defaults: { _controller: BackOfficeBundle:Internaute:edit }
+
+deleteInternaute:
+    path: /deleteInternaute/{id}
+    defaults: { _controller: BackOfficeBundle:Internaute:delete }
+
 readVoiture:
     path: /readVoiture
     defaults: { _controller: BackOfficeBundle:Voiture:read }

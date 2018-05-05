@@ -10,4 +10,5 @@ namespace BackOfficeBundle\Repository;
  */
 class internauteRepository extends \Doctrine\ORM\EntityRepository
 {
+	
 }

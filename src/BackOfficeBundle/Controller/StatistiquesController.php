@@ -14,16 +14,14 @@ class StatistiquesController extends Controller
 	    ->getRepository('BackOfficeBundle:Internaute')
 	    ->findAll();
 
-			$em = $this->container->get('doctrine')->getManager();
-			$qb = $em->createQueryBuilder();
-			$qb->select('count(Internaute.id)');
-			$qb->from('BackOfficeBundle:Internaute','Internaute');
-			$nb_internautes = $qb->getQuery()->getSingleScalarResult();
+		$em = $this->container->get('doctrine')->getManager();
+		$qb = $em->createQueryBuilder();
+		$qb->select('count(Internaute.id)');
+		$qb->from('BackOfficeBundle:Internaute','Internaute');
+		$nb_internautes = $qb->getQuery()->getSingleScalarResult();
 
 	    if (!$statistiques) {
-	        throw $this->createNotFoundException(
-	                'Aucune statistiques trouvées'
-	        );
+	        $nb_internautes = NULL;
 	    }
 
 	    return $this->render('BackOfficeBundle:Statistiques:read.html.twig', array(
