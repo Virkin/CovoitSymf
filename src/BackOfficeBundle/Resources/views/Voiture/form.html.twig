@@ -10,24 +10,20 @@
 		{{ form_start(form, {'attr':{'class':'ui form'}}) }}
 
 		<h4 class="ui dividing header">Voiture</h4>
-	  	<div class="two fields">
-	    	<div class="field">
-		      	<label>Identification</label>
-		      	<div class="two fields">
-		        	<div class="ui right labeled input">
-	          		    {{ form_widget(form.marque, { 'attr': {'class':'ui fluid dropdown', 'placeholder':"Marque"} }) }}
-	          		    <a href="{{ path('addMarque') }}">
-		          		    <div class="ui label">
-	    						<i class="plus icon"></i>
-	  						</div>
-  						</a>
-					</div>
-		        	<div class="field" >
-		          		{{ form_widget(form.modele, { 'attr': {'placeholder': "Modele"} }) }}
-		       		</div>
-		      	</div>
-	    	</div>
-		</div>
+      	<div class="two fields">
+        	<div class="field">
+      		    <label>Marque</label>
+      		    <div class="ui input">
+      		    	{{ form_widget(form.marque, { 'attr': {'class':'ui fluid dropdown', 'placeholder':"Marque"} }) }}  
+					<a href="{{ path('addMarque')}}"><button class="ui icon primary button"><i class="plus icon"></i></button></a>
+      		    </div>
+			</div>
+        	<div class="field" >
+        		<label>Modele</label>
+          		{{ form_widget(form.modele, { 'attr': {'placeholder': "Modele"} }) }}
+       		</div>
+      	</div>
+		
 		<div class="field">
 			<label>Nombre de place(s)</label>
 			{{ form_widget(form.nbPlaces, { 'attr': {'placeholder': "Nombre de place(s)"} }) }}
@@ -41,6 +37,14 @@
 		{{ form_end(form) }}
 	</div>
 
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script>
+		$('.ui.dropdown')
+  			.dropdown();
+	</script>
 {% endblock %}
 
 {% block footer %}
