@@ -18,6 +18,16 @@
 			<div class="ui input">
 			  <input name="input_search" placeholder="Search..." type="text">
 			</div>
+			<div class="ui selection dropdown">
+			  <input name="filter" type="hidden">
+			  <i class="dropdown icon"></i>
+				<div class="default text">Filtre</div>
+			  <div class="menu">
+			    <div class="item" data-value="villeDep">Ville de départ</div>
+			    <div class="item" data-value="villeArr">Ville d'arrivée</div>
+					<div class="item" data-value="villeDepvilleArr">Ville de départ et d'arrivée</div>
+			  </div>
+			</div>
 			<button type="submit" class="ui icon primary button"><i class="search icon"></i></button>
 		</form>
 	  	<table class="ui celled table">
@@ -48,6 +58,14 @@
 
 {% endif %}
 
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script>
+		$('.ui.dropdown')
+  			.dropdown();
+	</script>
 {% endblock %}
 
 {% block footer %}

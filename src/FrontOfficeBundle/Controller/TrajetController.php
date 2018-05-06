@@ -19,9 +19,26 @@ class TrajetController extends Controller
 		else
 			$slug = $_POST['input_search'];
 
-		$trajet = $this->getDoctrine()
-		->getRepository('BackOfficeBundle:Trajet')
-		->findAllOrderedByName($slug);
+		if (! isset($_POST['filter']))
+			$filter = "";
+		else
+			$filter = $_POST['filter'];
+
+		if ($filter == "villeDepvilleArr" or $filter == "") {
+			$trajet = $this->getDoctrine()
+			->getRepository('BackOfficeBundle:Trajet')
+			->findAllOrderedByName($slug);
+		}
+		elseif ($filter == "villeDep") {
+			$trajet = $this->getDoctrine()
+			->getRepository('BackOfficeBundle:Trajet')
+			->findDepOrderedByName($slug);
+		}
+		elseif ($filter == "villeArr") {
+			$trajet = $this->getDoctrine()
+			->getRepository('BackOfficeBundle:Trajet')
+			->findArrOrderedByName($slug);
+		}
 
 
 		if (!$trajet) {
