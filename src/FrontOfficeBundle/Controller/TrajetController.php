@@ -14,24 +14,10 @@ class TrajetController extends Controller
 {
 	function readAction()
 	{
-		$em = $this->getDoctrine()->getManager();
-		$trajets = $this->getDoctrine()->getManager()->getRepository('BackOfficeBundle:Trajet')->findAll();
-
-	    if (!$trajets) {
-	        $trajets = NULL;
-	    }
-
-	    return $this->render('FrontOfficeBundle:Trajet:read.html.twig', array(
-	        'trajets' => $trajets,
-	    ));
-	}
-
-	function showAction()
-	{
 		if (! isset($_POST['input_search']))
-		$slug = "";
+			$slug = "";
 		else
-		$slug = $_POST['input_search'];
+			$slug = $_POST['input_search'];
 
 		$trajet = $this->getDoctrine()
 		->getRepository('BackOfficeBundle:Trajet')
@@ -39,14 +25,12 @@ class TrajetController extends Controller
 
 
 		if (!$trajet) {
-		throw $this->createNotFoundException(
-		'Aucun trajet trouvé'
-		);
+			$trajet = NULL;
 		}
 
-		return $this->render('BackOfficeBundle:Trajet:read.html.twig', array(
-		'trajet' => $trajets,
-		'slug'=> $slug
+		return $this->render('FrontOfficeBundle:Trajet:read.html.twig', array(
+			'trajets' => $trajet,
+			'slug'=> $slug
 		));
 	}
 }
