@@ -5,6 +5,7 @@ namespace BackOfficeBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BackOfficeBundle\Entity\Internaute;
+use BackOfficeBundle\Repository\VoitureRepository;
 use BackOfficeBundle\Form\InternauteType;
 
 class InternauteController extends Controller
@@ -39,8 +40,14 @@ class InternauteController extends Controller
 	        return $this->redirectToRoute('readInternaute');
 	    }
 
+	    $voitures = $this->getDoctrine()->getRepository('BackOfficeBundle:Voiture')->findVoitureWithMarque();
+
+	    dump($voitures);
+
+
         return $this->render('BackOfficeBundle:Internaute:form.html.twig', array(
             'form' => $form->createView(),
+            'voitures' => $voitures
         ));
 	}
 }

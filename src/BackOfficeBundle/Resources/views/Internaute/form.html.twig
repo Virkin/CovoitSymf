@@ -30,22 +30,33 @@
 
 		<div class="two fields">
 			<div class="field">
-      		    <select class="ui fluid dropdown" onchange="location = {{ path('addInternaute', {'marqueId': val.value })}};">
-      		    	{% for key,val in form.marque.vars.choices %}
-        				<option value="{{ val.value }}" {{  form.marque.vars.value == '' and key == 0 ? ' selected ' :(val.value == form.marque.vars.value ? ' selected ' : '') }}>{{ val.label | trans }}</option>
-    				{% endfor %}
-      		    </select>
+      		    <div class="ui fluid dropdown" >
+      		    	<input name="voiture" type="hidden">
+      		    	<div class="text">Modele</div>
+      		    	<i class="dropdown icon"></i>
+      		    	<div class="menu">
+	      		    	{% for marque in form.marque.vars.choices %}
+	        				<div class="item">
+	        					<i class="dropdown icon"></i>
+	        					<span class="text">{{ marque.label}}</span>
+	        					<div class="menu">
+            						{% for voiture in voitures %}
+            							{% if marque.value == voiture.marque %}
+            								<div value="{{voiture.id}}" class="item">{{voiture.modele}}</div>
+            							{% endif %}
+            						{% endfor %}
+          						</div>
+	        				</div>
+	    				{% endfor %}
+		    		</div>
+      		    </div>
 			</div>
-        	<div class="field">
-          		{{ form_widget(form.voiture, { 'attr': {'class':'ui fluid dropdown', 'placeholder': "Voiture"} }) }}
-       		</div>	     
+			<div class="field">
+          		{{ form_widget(form.ville, { 'attr': {'class':'ui fluid dropdown', 'placeholder': "Ville"} }) }}
+       		</div>
 		</div>
 
-		<div class="field">
-          	{{ form_widget(form.ville, { 'attr': {'class':'ui fluid dropdown', 'placeholder': "Ville"} }) }}
-       	</div>
-
-       	<div class="ui buttons">
+		<div class="ui buttons">
 		<a href="{{ path('readInternaute') }}">{{ form_widget(form.cancel, {'attr':{'class':'ui button'}} ) }}</a>
 			<div class="or"></div>
 		 {{ form_widget(form.save, {'attr':{'class':'ui positive button'}} ) }}

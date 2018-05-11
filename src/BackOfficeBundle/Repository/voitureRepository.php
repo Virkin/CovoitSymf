@@ -10,4 +10,15 @@ namespace BackOfficeBundle\Repository;
  */
 class voitureRepository extends \Doctrine\ORM\EntityRepository
 {
+
+	public function findVoitureWithMarque()
+	{	
+		return $this->getEntityManager()
+			->createQuery(
+		    'SELECT voiture.id as id, voiture.modele as modele, marques.id as marque
+		    FROM BackOfficeBundle:Voiture voiture
+		    JOIN BackOfficeBundle:Marque marques WITH marques.id=voiture.marque'
+		  	)->getResult();
+	}
+
 }
