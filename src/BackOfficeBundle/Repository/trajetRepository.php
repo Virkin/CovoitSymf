@@ -16,7 +16,7 @@ class trajetRepository extends \Doctrine\ORM\EntityRepository
   	$search .= "%";
   	return $this->getEntityManager()
 			->createQuery(
-        'SELECT trajet.nbKm as nbKm, trajet.date as date, cityDep.ville as villeDep, cityArr.ville as villeArr, user.nom as nom, user.prenom as prenom
+        'SELECT trajet.id as id, trajet.nbKm as nbKm, trajet.date as date, cityDep.ville as villeDep, cityArr.ville as villeArr, user.nom as nom, user.prenom as prenom
         FROM BackOfficeBundle:Trajet trajet
         JOIN BackOfficeBundle:Ville cityDep WITH cityDep.id=trajet.villeDep
         JOIN BackOfficeBundle:Ville cityArr WITH cityArr.id=trajet.villeArr
@@ -32,7 +32,7 @@ class trajetRepository extends \Doctrine\ORM\EntityRepository
   	$search .= "%";
   	return $this->getEntityManager()
 			->createQuery(
-        'SELECT trajet.nbKm as nbKm, trajet.date as date, cityDep.ville as villeDep, cityArr.ville as villeArr, user.nom as nom, user.prenom as prenom
+        'SELECT trajet.id as id, trajet.nbKm as nbKm, trajet.date as date, cityDep.ville as villeDep, cityArr.ville as villeArr, user.nom as nom, user.prenom as prenom
         FROM BackOfficeBundle:Trajet trajet
         JOIN BackOfficeBundle:Ville cityDep WITH cityDep.id=trajet.villeDep
         JOIN BackOfficeBundle:Ville cityArr WITH cityArr.id=trajet.villeArr
@@ -48,7 +48,7 @@ class trajetRepository extends \Doctrine\ORM\EntityRepository
   	$search .= "%";
   	return $this->getEntityManager()
 			->createQuery(
-        'SELECT trajet.nbKm as nbKm, trajet.date as date, cityDep.ville as villeDep, cityArr.ville as villeArr, user.nom as nom, user.prenom as prenom
+        'SELECT trajet.id as id, trajet.nbKm as nbKm, trajet.date as date, cityDep.ville as villeDep, cityArr.ville as villeArr, user.nom as nom, user.prenom as prenom
         FROM BackOfficeBundle:Trajet trajet
         JOIN BackOfficeBundle:Ville cityDep WITH cityDep.id=trajet.villeDep
         JOIN BackOfficeBundle:Ville cityArr WITH cityArr.id=trajet.villeArr
@@ -56,6 +56,21 @@ class trajetRepository extends \Doctrine\ORM\EntityRepository
         WHERE UPPER(cityArr.ville) LIKE UPPER(:search)'
       )
   		->setParameter('search', $search)
+  		->getResult();
+  }
+  public function findById($id)
+  {
+  	return $this->getEntityManager()
+			->createQuery(
+        "SELECT trajet.id as id, trajet.nbKm as nbKm, trajet.date as date, cityDep.ville as villeDep, cityArr.ville as villeArr, user.nom as nom, user.prenom as prenom, marque.nom as marqueNom, voiture.modele as modele, voiture.nbPlaces as nbPlaces
+        FROM BackOfficeBundle:Trajet trajet
+        JOIN BackOfficeBundle:Ville cityDep WITH cityDep.id=trajet.villeDep
+        JOIN BackOfficeBundle:Ville cityArr WITH cityArr.id=trajet.villeArr
+        JOIN BackOfficeBundle:Internaute user WITH user.id=trajet.internaute
+        JOIN BackOfficeBundle:Voiture voiture WITH user.voiture=voiture.id
+        JOIN BackOfficeBundle:Marque marque WITH voiture.marque=marque.id
+        WHERE trajet.id='$id'"
+      )
   		->getResult();
   }
 }

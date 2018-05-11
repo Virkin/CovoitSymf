@@ -39,6 +39,7 @@
 							<th>Date</th>
 							<th>Nom</th>
 							<th>Prénom</th>
+							<th>Détails</th>
 		        </tr>
 	      	</thead>
 	      	<tbody>
@@ -50,6 +51,15 @@
 					<td>{{trajet.date|date('Y-m-d H:i:s')}}</td>
 					<td>{{trajet.nom}}</td>
 					<td>{{trajet.prenom}}</td>
+					<td>
+						<div class="ui buttons">
+							  <a href="showTrajet/{{trajet.id}}">
+								  <div class="primary ui icon button">
+								  	<i class="ellipsis horizontal icon"></i>
+								  </div>
+							  </a>
+						</div>
+					</td>
 				</tr>
 			{% endfor %}
 			</tbody>

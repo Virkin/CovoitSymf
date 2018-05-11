@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use BackOfficeBundle\Entity\Trajet;
+use BackOfficeBundle\Form\TrajetType;
 use BackOfficeBundle\Repository\TrajetRepository;
 
 class TrajetController extends Controller
@@ -49,5 +50,20 @@ class TrajetController extends Controller
 			'trajets' => $trajet,
 			'slug'=> $slug
 		));
+	}
+	function showAction($id)
+	{
+		$trajet = $this->getDoctrine()
+		->getRepository('BackOfficeBundle:Trajet')
+		->findById($id);
+		dump($trajet);
+
+	    if (!$trajet) {
+	        $trajet = NULL;
+	    }
+
+	    return $this->render('FrontOfficeBundle:Trajet:show.html.twig', array(
+	        'trajet' => $trajet,
+	    ));
 	}
 }

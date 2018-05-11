@@ -1,0 +1,62 @@
+{% extends 'FrontOfficeBundle::Default/frontOffice.html.twig' %}
+{% set current = 'Trajet' %}
+
+{% block header %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+{% if trajet == NULL %}
+	<div class="ui raised very padded text container segment">
+	  <h2 class="ui header">Pas de trajet</h2>
+	</div>
+{% else %}
+
+	<div class="ui container segment">
+	  	<table class="ui celled table">
+				<div class="ui buttons">
+						<a href="{{ path('trajet') }}">
+							<div class="primary ui icon button">
+								<i class="arrow left icon"></i> Retour
+							</div>
+						</a>
+				</div>
+			<thead>
+		        <tr>
+		         	<th>Ville départ</th>
+							<th>Ville arrivée</th>
+							<th>Nombre kilomètres</th>
+							<th>Date</th>
+							<th>Nom</th>
+							<th>Prénom</th>
+							<th>Marque</th>
+							<th>Modèle</th>
+							<th>Place(s)</th>
+		        </tr>
+	      	</thead>
+	      	<tbody>
+				{% for trajet in trajet %}
+				<tr>
+					<td>{{trajet.villeDep}}</td>
+					<td>{{trajet.villeArr}}</td>
+					<td>{{trajet.nbKm}}</td>
+					<td>{{trajet.date|date('Y-m-d H:i:s')}}</td>
+					<td>{{trajet.nom}}</td>
+					<td>{{trajet.prenom}}</td>
+					<td>{{trajet.marqueNom}}</td>
+					<td>{{trajet.modele}}</td>
+					<td>{{trajet.nbPlaces}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+{% endif %}
+
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+{% endblock %}

@@ -9,3 +9,7 @@ home:
 trajet:
     path:     /trajet
     defaults: { _controller: FrontOfficeBundle:Trajet:read }
+
+showTrajet:
+    path: /showTrajet/{id}
+    defaults: { _controller: FrontOfficeBundle:Trajet:show }
