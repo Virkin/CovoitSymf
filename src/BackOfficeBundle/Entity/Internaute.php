@@ -174,6 +174,17 @@ class Internaute
     }
 
     /**
+     * Get voiture
+     *
+     * @return \BackOfficeBundle\Entity\Marque
+     */
+    public function getMarque()
+    {
+        return;
+    }
+
+
+    /**
      * Set ville
      *
      * @param \BackOfficeBundle\Entity\Ville $ville

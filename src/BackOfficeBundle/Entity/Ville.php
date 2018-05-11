@@ -83,7 +83,6 @@ class Ville
 
     public function __toString() 
     {
-        return $this->nom;
+        return $this->ville.' ('.$this->cp.')';
     }
 }
-

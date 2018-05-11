@@ -5,6 +5,11 @@ namespace BackOfficeBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 
 class InternauteType extends AbstractType
 {
@@ -13,7 +18,16 @@ class InternauteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom')->add('prenom')->add('tel')->add('mail')->add('voiture')->add('ville')        ;
+        $builder
+            ->add('nom',TextType::class)
+            ->add('prenom',TextType::class)
+            ->add('tel',TextType::class)
+            ->add('mail',EmailType::class)
+            ->add('marque', EntityType::class, array('class' => 'BackOfficeBundle:Marque', 'choice_label' => 'nom'))
+            ->add('voiture', EntityType::class, array('class' => 'BackOfficeBundle:Voiture', 'choice_label' => 'modele'))
+            ->add('ville',EntityType::class, array('class' => 'BackOfficeBundle:Ville'))
+            ->add('cancel', ButtonType::class, array('label' => 'Cancel'))
+            ->add('save', SubmitType::class, array('label' => 'Save'));
     }
     
     /**

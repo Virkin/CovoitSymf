@@ -14,6 +14,10 @@ addInternaute:
     path: /addInternaute
     defaults: { _controller: BackOfficeBundle:Internaute:add }
 
+addInternaute:
+    path: /addInternaute/{marqueId}
+    defaults: { _controller: BackOfficeBundle:Internaute:add }
+
 editInternaute:
     path: /editInternaute/{id}
     defaults: { _controller: BackOfficeBundle:Internaute:edit }
