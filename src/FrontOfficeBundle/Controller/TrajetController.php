@@ -3,12 +3,7 @@
 namespace FrontOfficeBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\HttpFoundation\Request;
 use BackOfficeBundle\Entity\Trajet;
-use BackOfficeBundle\Form\TrajetType;
 use BackOfficeBundle\Repository\TrajetRepository;
 
 class TrajetController extends Controller
@@ -56,8 +51,7 @@ class TrajetController extends Controller
 		$trajet = $this->getDoctrine()
 		->getRepository('BackOfficeBundle:Trajet')
 		->findById($id);
-		dump($trajet);
-
+		
 	    if (!$trajet) {
 	        $trajet = NULL;
 	    }
