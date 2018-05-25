@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} API {% endblock %}
+
+{% block header %}
+	<div class="ui attached stackable menu">
+	  <div class="ui container">
+	    <a class="header {% if current=='Api'%}active{% endif %} item" href="{{ path('api_homepage') }}">
+	    	API
+	    </a>
+      <a class=" {% if current=='Trajets'%}active{% endif %} item" href="{{ path('api_trajet') }}">
+	      <i class="code icon"></i> Trajets
+	    </a>
+	  </div>
+	</div>
+{% endblock %}
+
+{% block footer %}
+  <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+      <div class="ui horizontal small divided link list">
+        <a class="item">© 2018 Antoine Auffret & Virgile Prin </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

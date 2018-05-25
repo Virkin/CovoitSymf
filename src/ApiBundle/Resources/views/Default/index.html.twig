@@ -1,1 +1,83 @@
-Hello World!
+{% extends 'ApiBundle::Default/api.html.twig' %}
+{% set current = 'Api' %}
+
+{% block header %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<div class="ui raised very padded text container segment">
+	  <h2 class="ui header">Bienvenue sur l'API</h2>
+    <h3>Il y a trois paramètres facultatifs possibles :</h3>
+    <div class="ui bulleted list">
+      <div class="item">filter : filtre la ville de départ (dep), la ville d'arrivée (arr) ou les deux (deparr)</div>
+      <div class="item">search : chaîne de caractère sur la ville à rechercher</div>
+      <div class="item">id : détail d'un trajet via son id</div>
+    </div>
+    <h3>Exemple :</h3>
+    <div class="ui bulleted list">
+      <a class="item" href="trajets?filter=dep&search=qui">Recherche les villes de départs commançant par "qui"</a>
+      <code>
+        [
+          [
+            {
+              "id": 3,
+              "nbKm": 0,
+              "date": {
+                "date": "2018-04-30 00:00:00.000000",
+                "timezone_type": 3,
+                "timezone": "Europe/Berlin"
+              },
+              "villeDep": "Quimper",
+              "villeArr": "Plougonvelin",
+              "nom": "Auffret",
+              "prenom": "Antoine"
+            },
+            {
+              "id": 4,
+              "nbKm": 50,
+              "date": {
+                "date": "2018-04-30 00:00:00.000000",
+                "timezone_type": 3,
+                "timezone": "Europe/Berlin"
+              },
+              "villeDep": "Quimper",
+              "villeArr": "Brest",
+              "nom": "Auffret",
+              "prenom": "Antoine"
+            }
+          ]
+        ]
+      </code>
+      <a class="item" href="trajets?id=3">Affiche le détail du trajet 3</a>
+      <code>
+        [
+          [
+            {
+              "id": 3,
+              "nbKm": 0,
+              "date": {
+                "date": "2018-04-30 00:00:00.000000",
+                "timezone_type": 3,
+                "timezone": "Europe/Berlin"
+              },
+              "villeDep": "Quimper",
+              "villeArr": "Plougonvelin",
+              "nom": "Auffret",
+              "prenom": "Antoine",
+              "marqueNom": "Peugot",
+              "modele": "206",
+              "nbPlaces": 5
+            }
+          ]
+        ]
+      </code>
+    </div>
+	</div>
+
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+{% endblock %}
