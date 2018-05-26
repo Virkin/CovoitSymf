@@ -11,7 +11,7 @@ use BackOfficeBundle\Form\InternauteType;
 class InternauteController extends Controller
 {
 	function readAction()
-	{	
+	{
 		$internautes = $this->getDoctrine()->getManager()->getRepository('BackOfficeBundle:Internaute')->findAll();
 
 	    if (!$internautes) {
@@ -35,15 +35,12 @@ class InternauteController extends Controller
         {
 	        $em = $this->getDoctrine()->getManager();
 	        $em->persist($internaute);
-	        $em->flush($intrnaute);
-	        $internuate = $form->getData();
+	        $em->flush($internaute);
+	        $internaute = $form->getData();
 	        return $this->redirectToRoute('readInternaute');
 	    }
 
 	    $voitures = $this->getDoctrine()->getRepository('BackOfficeBundle:Voiture')->findVoitureWithMarque();
-
-	    dump($voitures);
-
 
         return $this->render('BackOfficeBundle:Internaute:form.html.twig', array(
             'form' => $form->createView(),

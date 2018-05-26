@@ -24,11 +24,12 @@ class InternauteType extends AbstractType
             ->add('tel',TextType::class)
             ->add('mail',EmailType::class)
             ->add('marque', EntityType::class, array('class' => 'BackOfficeBundle:Marque', 'choice_label' => 'nom'))
+            ->add('voiture', EntityType::class, array('class' => 'BackOfficeBundle:Voiture'))
             ->add('ville',EntityType::class, array('class' => 'BackOfficeBundle:Ville'))
             ->add('cancel', ButtonType::class, array('label' => 'Cancel'))
             ->add('save', SubmitType::class, array('label' => 'Save'));
     }
-    
+
     /**
      * {@inheritdoc}
      */
