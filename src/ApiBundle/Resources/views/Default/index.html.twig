@@ -8,71 +8,104 @@
 {% block body %}
 
 	<div class="ui raised very padded text container segment">
-	  <h2 class="ui header">Bienvenue sur l'API</h2>
-    <h3>Il y a trois paramètres facultatifs possibles :</h3>
+	  <h2 class="ui header">Bienvenue sur la documentation de l'API</h2>
+    <h3>Format d'accès (3 paramètres facultatifs) :</h3>
     <div class="ui bulleted list">
-      <div class="item">filter : filtre la ville de départ (dep), la ville d'arrivée (arr) ou les deux (deparr)</div>
-      <div class="item">search : chaîne de caractère sur la ville à rechercher</div>
-      <div class="item">id : détail d'un trajet via son id</div>
+      <div class="item"><b>filter</b> : filtre la ville de départ (dep), la ville d'arrivée (arr) ou les deux (deparr)</div>
+      <div class="item"><b>search</b> : chaîne de caractère sur la ville à rechercher</div>
+      <div class="item"><b>id</b> : détail d'un trajet via son id (les champs filter et search sont ignorés)</div>
     </div>
-    <h3>Exemple :</h3>
+		<h3>Format de retour pour les paramètres filter et search :</h3>
+		<div class="ui bulleted list">
+			<div class="item"><b>id (int)</b> : identifiant du trajet</div>
+			<div class="item"><b>nbKm (double)</b> : nombre de kilomètres entre la ville de départ et la ville d'arrivée</div>
+			<div class="item">
+				<div><b>date</b> : contient la date, le timezone_type et le timezone</div>
+				<div class="list">
+					<div class="item"><b>date (datetime)</b> : date de création du trajet</div>
+					<div class="item"><b>timezone_type (int)</b> : numéro du fuseau horaire</div>
+					<div class="item"><b>timezone (string)</b> : nom du fuseau horaire</div>
+				</div>
+			</div>
+			<div class="item"><b>villeDep (string)</b> : ville de départ</div>
+			<div class="item"><b>villeArr (string)</b> : ville d'arrivée</div>
+			<div class="item"><b>nom (string)</b> : nom de l'internaute</div>
+			<div class="item"><b>prenom (string)</b> : prénom de l'internaute</div>
+		</div>
+		<h3>Format de retour pour le paramètre id :</h3>
+		<div class="ui bulleted list">
+			<div class="item"><b>id (int)</b> : identifiant du trajet</div>
+			<div class="item"><b>nbKm (double)</b> : nombre de kilomètres entre la ville de départ et la ville d'arrivée</div>
+			<div class="item">
+				<div><b>date</b> : contient la date, le timezone_type et le timezone</div>
+				<div class="list">
+					<div class="item"><b>date (datetime)</b> : date de création du trajet</div>
+					<div class="item"><b>timezone_type (int)</b> : numéro du fuseau horaire</div>
+					<div class="item"><b>timezone (string)</b> : nom du fuseau horaire</div>
+				</div>
+			</div>
+			<div class="item"><b>villeDep (string)</b> : ville de départ</div>
+			<div class="item"><b>villeArr (string)</b> : ville d'arrivée</div>
+			<div class="item"><b>nom (string)</b> : nom de l'internaute</div>
+			<div class="item"><b>prenom (string)</b> : prénom de l'internaute</div>
+			<div class="item"><b>marqueNom (string)</b> : nom de la marque de la voiture</div>
+			<div class="item"><b>modele (string)</b> : nom du modèle de la voiture</div>
+			<div class="item"><b>nbPlaces (int)</b> : nombre de places de la voiture</div>
+		</div>
+    <h3>Exemples :</h3>
     <div class="ui bulleted list">
       <a class="item" href="trajets?filter=dep&search=qui">Recherche les villes de départs commançant par "qui"</a>
-      <code>
-        [
-          [
-            {
-              "id": 3,
-              "nbKm": 0,
-              "date": {
-                "date": "2018-04-30 00:00:00.000000",
-                "timezone_type": 3,
-                "timezone": "Europe/Berlin"
-              },
-              "villeDep": "Quimper",
-              "villeArr": "Plougonvelin",
-              "nom": "Auffret",
-              "prenom": "Antoine"
-            },
-            {
-              "id": 4,
-              "nbKm": 50,
-              "date": {
-                "date": "2018-04-30 00:00:00.000000",
-                "timezone_type": 3,
-                "timezone": "Europe/Berlin"
-              },
-              "villeDep": "Quimper",
-              "villeArr": "Brest",
-              "nom": "Auffret",
-              "prenom": "Antoine"
-            }
-          ]
-        ]
-      </code>
+			<pre>[
+  [
+    {
+      "id": 3,
+      "nbKm": 0,
+      "date": {
+        "date": "2018-04-30 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe/Berlin"
+      },
+      "villeDep": "Quimper",
+      "villeArr": "Plougonvelin",
+      "nom": "Auffret",
+      "prenom": "Antoine"
+    },
+    {
+      "id": 4,
+      "nbKm": 50,
+      "date": {
+        "date": "2018-04-30 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe/Berlin"
+      },
+      "villeDep": "Quimper",
+      "villeArr": "Brest",
+      "nom": "Auffret",
+      "prenom": "Antoine"
+    }
+  ]
+]</pre>
       <a class="item" href="trajets?id=3">Affiche le détail du trajet 3</a>
-      <code>
-        [
-          [
-            {
-              "id": 3,
-              "nbKm": 0,
-              "date": {
-                "date": "2018-04-30 00:00:00.000000",
-                "timezone_type": 3,
-                "timezone": "Europe/Berlin"
-              },
-              "villeDep": "Quimper",
-              "villeArr": "Plougonvelin",
-              "nom": "Auffret",
-              "prenom": "Antoine",
-              "marqueNom": "Peugot",
-              "modele": "206",
-              "nbPlaces": 5
-            }
-          ]
-        ]
-      </code>
+      <pre>[
+  [
+    {
+      "id": 3,
+      "nbKm": 0,
+      "date": {
+        "date": "2018-04-30 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe/Berlin"
+      },
+      "villeDep": "Quimper",
+      "villeArr": "Plougonvelin",
+      "nom": "Auffret",
+      "prenom": "Antoine",
+      "marqueNom": "Peugot",
+      "modele": "206",
+      "nbPlaces": 5
+    }
+  ]
+]</pre>
     </div>
 	</div>
 
