@@ -62,7 +62,7 @@ class trajetRepository extends \Doctrine\ORM\EntityRepository
   {
   	return $this->getEntityManager()
 			->createQuery(
-        "SELECT trajet.id as id, trajet.nbKm as nbKm, trajet.date as date, cityDep.ville as villeDep, cityArr.ville as villeArr, user.nom as nom, user.prenom as prenom, marque.nom as marqueNom, voiture.modele as modele, voiture.nbPlaces as nbPlaces
+        "SELECT trajet.id as id, trajet.nbKm as nbKm, trajet.date as date, cityDep.ville as villeDep, cityArr.ville as villeArr, user.nom as nom, user.prenom as prenom, user.tel as tel, user.mail as mail, marque.nom as marqueNom, voiture.modele as modele, voiture.nbPlaces as nbPlaces
         FROM BackOfficeBundle:Trajet trajet
         JOIN BackOfficeBundle:Ville cityDep WITH cityDep.id=trajet.villeDep
         JOIN BackOfficeBundle:Ville cityArr WITH cityArr.id=trajet.villeArr
