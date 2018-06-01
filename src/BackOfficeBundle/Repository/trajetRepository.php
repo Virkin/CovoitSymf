@@ -23,7 +23,7 @@ class trajetRepository extends \Doctrine\ORM\EntityRepository
         JOIN BackOfficeBundle:Internaute user WITH user.id=trajet.internaute
         WHERE UPPER(cityDep.ville) LIKE UPPER(:search) OR UPPER(cityArr.ville) LIKE UPPER(:search)'
       )
-  		->setParameter('search', $search)
+  		->setParameter('search', '%'.$search.'%')
   		->getResult();
   }
   public function findDepOrderedByName($slug)
