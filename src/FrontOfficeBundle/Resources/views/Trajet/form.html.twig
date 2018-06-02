@@ -1,0 +1,48 @@
+{% extends 'FrontOfficeBundle::Trajet/read.html.twig' %}
+
+{% block header %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="ui raised very padded text container segment">
+
+		{{ form_start(form, {'attr':{'class':'ui form'}}) }}
+
+		<h4 class="ui dividing header">Trajet</h4>
+	  	<div class="two fields">
+		       <div class="field">
+								<label>Ville de départ</label>
+	          		{{ form_widget(form.villeDep, { 'attr': {'class':'ui fluid search selection dropdown', 'placeholder': "Ville de départ"} }) }}
+					</div>
+		      <div class="field">
+						  <label>Ville d'arrivée</label>
+		       	 {{ form_widget(form.villeArr, { 'attr': {'class':'ui fluid search selection dropdown', 'placeholder': "Ville d'arrivée"} }) }}
+		      </div>
+		</div>
+    <div class="two fields">
+            <div class="field">
+                  {{ form_widget(form.nbKm, { 'attr': {'placeholder': "Distance en kilomètres"} }) }}
+        </div>
+            <div class="disabled field">
+                {{ form_widget(form.date, { 'attr': {'placeholder': "Date de création"} }) }}
+            </div>
+  </div>
+	<div class="field">
+		  <label>Internaute</label>
+			{{ form_widget(form.internaute, { 'attr': {'class':'ui fluid search selection dropdown', 'placeholder': "Internaute"} }) }}
+	</div>
+		<div class="ui buttons">
+		<a href="{{ path('readTrajet') }}">{{ form_widget(form.cancel, {'attr':{'class':'ui button'}} ) }}</a>
+			<div class="or"></div>
+		 {{ form_widget(form.save, {'attr':{'class':'ui positive button'}} ) }}
+		</div>
+
+		{{ form_end(form) }}
+	</div>
+
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+{% endblock %}

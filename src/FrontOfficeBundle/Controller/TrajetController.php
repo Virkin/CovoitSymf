@@ -3,7 +3,9 @@
 namespace FrontOfficeBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use BackOfficeBundle\Entity\Trajet;
+use BackOfficeBundle\Form\TrajetType;
 use BackOfficeBundle\Repository\TrajetRepository;
 
 class TrajetController extends Controller
@@ -42,8 +44,7 @@ class TrajetController extends Controller
 		}
 
 		return $this->render('FrontOfficeBundle:Trajet:read.html.twig', array(
-			'trajets' => $trajet,
-			'slug'=> $slug
+			'trajets' => $trajet
 		));
 	}
 	function showAction($id)
@@ -51,7 +52,7 @@ class TrajetController extends Controller
 		$trajet = $this->getDoctrine()
 		->getRepository('BackOfficeBundle:Trajet')
 		->findById($id);
-		
+
 	    if (!$trajet) {
 	        $trajet = NULL;
 	    }
@@ -59,5 +60,26 @@ class TrajetController extends Controller
 	    return $this->render('FrontOfficeBundle:Trajet:show.html.twig', array(
 	        'trajet' => $trajet,
 	    ));
+	}
+	function addAction(Request $request)
+	{
+		$trajet = new Trajet();
+
+        $form = $this->createForm(TrajetType::class, $trajet);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+	        $em = $this->getDoctrine()->getManager();
+	        $em->persist($trajet);
+	        $em->flush($trajet);
+	        $trajet = $form->getData();
+	        return $this->redirectToRoute('readTrajet');
+	    }
+
+        return $this->render('FrontOfficeBundle:Trajet:form.html.twig', array(
+            'form' => $form->createView(),
+        ));
 	}
 }

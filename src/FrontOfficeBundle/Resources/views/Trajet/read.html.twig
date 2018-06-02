@@ -14,7 +14,7 @@
 {% else %}
 
 	<div class="ui container segment">
-		<form class="pull-left" role="search" id="nav-search-form" method="post" action="{{ path('trajet') }}">
+		<form class="pull-left" role="search" id="nav-search-form" method="post" action="{{ path('readTrajet') }}">
 			<div class="ui input">
 			  <input name="input_search" placeholder="Search..." type="text">
 			</div>
@@ -29,6 +29,11 @@
 			  </div>
 			</div>
 			<button type="submit" class="ui icon primary button"><i class="search icon"></i></button>
+			<a href="addTrajet">
+				<div class="ui right floated small primary labeled icon button">
+						<i class="plus icon"></i> Add Trajet
+				</div>
+			</a>
 		</form>
 	  	<table class="ui celled table">
 			<thead>

@@ -6,10 +6,14 @@ home:
     path:     /home
     defaults: { _controller: FrontOfficeBundle:Default:index }
 
-trajet:
-    path:     /trajet
+readTrajet:
+    path:     /readTrajet
     defaults: { _controller: FrontOfficeBundle:Trajet:read }
 
 showTrajet:
     path: /showTrajet/{id}
     defaults: { _controller: FrontOfficeBundle:Trajet:show }
+
+addTrajet:
+    path:     /addTrajet
+    defaults: { _controller: FrontOfficeBundle:Trajet:add }

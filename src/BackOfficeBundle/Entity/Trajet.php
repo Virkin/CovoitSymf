@@ -168,4 +168,3 @@ class Trajet
         return $this->internaute;
     }
 }
-

@@ -207,5 +207,8 @@ class Internaute
     {
         return $this->ville;
     }
+    public function __toString()
+    {
+        return $this->prenom.' '.$this->nom;
+    }
 }
-
