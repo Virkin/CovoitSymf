@@ -14,7 +14,7 @@
         	<div class="field">
       		    <label>Marque</label>
       		    <div class="ui input">
-      		    	{{ form_widget(form.marque, { 'attr': {'class':'ui fluid dropdown', 'placeholder':"Marque"} }) }}  
+      		    	{{ form_widget(form.marque, { 'attr': {'class':'ui fluid search selection dropdown', 'placeholder':"Marque"} }) }}  
 					<a href="{{ path('addMarque')}}"><button class="ui icon primary button"><i class="plus icon"></i></button></a>
       		    </div>
 			</div>
@@ -23,7 +23,7 @@
           		{{ form_widget(form.modele, { 'attr': {'placeholder': "Modele"} }) }}
        		</div>
       	</div>
-		
+
 		<div class="field">
 			<label>Nombre de place(s)</label>
 			{{ form_widget(form.nbPlaces, { 'attr': {'placeholder': "Nombre de place(s)"} }) }}

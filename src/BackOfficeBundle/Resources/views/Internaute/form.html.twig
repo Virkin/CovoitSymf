@@ -29,32 +29,10 @@
 		</div>
 		<div class="two fields">
 			<div class="field">
-				<!--
-      		    <div class="ui fluid dropdown" >
-      		    	<input name="voiture" type="hidden">
-      		    	<div class="text">Modele</div>
-      		    	<i class="dropdown icon"></i>
-      		    	<div class="menu">
-	      		    	{% for marque in form.marque.vars.choices %}
-	        				<div class="item">
-	        					<i class="dropdown icon"></i>
-	        					<span class="text">{{ marque.label}}</span>
-	        					<div class="menu">
-            						{% for voiture in voitures %}
-            							{% if marque.value == voiture.marque %}
-            								<div value="{{voiture.id}}" class="item">{{voiture.modele}}</div>
-            							{% endif %}
-            						{% endfor %}
-          						</div>
-	        				</div>
-	    				{% endfor %}
-		    		</div>
-					</div>
-				-->
-					{{ form_widget(form.voiture, { 'attr': {'class':'ui fluid dropdown', 'placeholder': "Voiture"} }) }}
+					{{ form_widget(form.voiture, { 'attr': {'class':'ui fluid search selection dropdown', 'placeholder': "Voiture"} }) }}
 			</div>
 			<div class="field">
-          		{{ form_widget(form.ville, { 'attr': {'class':'ui fluid dropdown', 'placeholder': "Ville"} }) }}
+          		{{ form_widget(form.ville, { 'attr': {'class':'ui fluid search selection dropdown', 'placeholder': "Ville"} }) }}
        		</div>
 		</div>
 		<!-- form._token solved : The CSRF token is invalid. Please try to resubmit the form. -->
