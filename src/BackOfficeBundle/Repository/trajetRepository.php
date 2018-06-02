@@ -39,7 +39,7 @@ class trajetRepository extends \Doctrine\ORM\EntityRepository
         JOIN BackOfficeBundle:Internaute user WITH user.id=trajet.internaute
         WHERE UPPER(cityDep.ville) LIKE UPPER(:search)'
       )
-  		->setParameter('search', $search)
+  		->setParameter('search', '%'.$search.'%')
   		->getResult();
   }
   public function findArrOrderedByName($slug)
@@ -55,7 +55,7 @@ class trajetRepository extends \Doctrine\ORM\EntityRepository
         JOIN BackOfficeBundle:Internaute user WITH user.id=trajet.internaute
         WHERE UPPER(cityArr.ville) LIKE UPPER(:search)'
       )
-  		->setParameter('search', $search)
+  		->setParameter('search', '%'.$search.'%')
   		->getResult();
   }
   public function findById($id)
