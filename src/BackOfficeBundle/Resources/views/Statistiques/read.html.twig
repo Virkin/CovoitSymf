@@ -16,16 +16,40 @@
 {% else %}
 
   <div class="ui container segment">
-      <table class="ui celled table">
+    <div class="ui huge label">
+      <i class="user icon"></i> {{nb_internautes}}
+    </div>
+    <div class="ui huge label">
+      <i class="user icon"></i> {{nb_big_internautes}}
+    </div>
+
+    <table class="ui celled table">
       <thead>
             <tr>
-              <th>Nombre d'internautes total</th>
+              <th>Top Ville Arrivée</th>
             </tr>
           </thead>
           <tbody>
+      {% for ville in topVilleArr %}
         <tr>
-          <td>{{nb_internautes}}</td>
+          <td>{{ville.name}}</td>
         </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    <table class="ui celled table">
+      <thead>
+            <tr>
+              <th>Top Ville Départ</th>
+            </tr>
+          </thead>
+          <tbody>
+      {% for ville in topVilleDep %}
+        <tr>
+          <td>{{ville.name}}</td>
+        </tr>
+      {% endfor %}
       </tbody>
     </table>
   </div>
