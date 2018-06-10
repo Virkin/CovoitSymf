@@ -15,43 +15,93 @@
 
 {% else %}
 
-  <div class="ui container segment">
-    <div class="ui huge label">
-      <i class="user icon"></i> {{nb_internautes}}
-    </div>
-    <div class="ui huge label">
-      <i class="user icon"></i> {{nb_big_internautes}}
-    </div>
-
-    <table class="ui celled table">
-      <thead>
+    <div class="ui container horizontal segments">
+      <div class="ui segment">
+        <table class="ui celled collapsing table">
+          <thead>
             <tr>
+              <th></th>
               <th>Top Ville Arrivée</th>
             </tr>
           </thead>
           <tbody>
-      {% for ville in topVilleArr %}
-        <tr>
-          <td>{{ville.name}}</td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
-
-    <table class="ui celled table">
-      <thead>
+          {% for i in 1..5 %}
             <tr>
+              {% if i == 1 %}
+                 <td><div class="ui yellow label">{{i}}</div></td>
+              {% elseif i == 2 %}
+                 <td><div class="ui grey label">{{i}}</div></td>
+              {% elseif i == 3 %}
+                 <td><div class="ui brown label">{{i}}</div></td>
+              {% else %}
+                  <td><div class="ui white label">{{i}}</div></td>
+              {% endif %}
+      
+              {% if topVilleArr[i-1] is defined %}
+                <td>{{topVilleArr[i-1].name}}</td>
+              {% else %}
+                <td></td>
+              {% endif %}
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="ui segment">
+        <div class="ui statistics">
+          <div class="huge statistic">
+            <div class="value">
+              <i class="user icon"></i> {{nb_internautes}}
+            </div>
+            <div class="label">
+              User
+            </div>
+          </div>
+          <div class="huge statistic">
+            <div class="value">
+              <i class="user plus icon"></i> {{nb_big_internautes}}
+            </div>
+            <div class="label">
+              User avec 2 trajets ou +
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui segment">
+         <table class="ui celled collapsing table">
+          <thead>
+            <tr>
+              <th></th>
               <th>Top Ville Départ</th>
             </tr>
           </thead>
           <tbody>
-      {% for ville in topVilleDep %}
-        <tr>
-          <td>{{ville.name}}</td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
+          {% for i in 1..5 %}
+            <tr>
+              {% if i == 1 %}
+                 <td><div class="ui yellow label">{{i}}</div></td>
+              {% elseif i == 2 %}
+                 <td><div class="ui grey label">{{i}}</div></td>
+              {% elseif i == 3 %}
+                 <td><div class="ui brown label">{{i}}</div></td>
+              {% else %}
+                  <td><div class="ui white label">{{i}}</div></td>
+              {% endif %}
+      
+              {% if topVilleDep[i-1] is defined %}
+                <td>{{topVilleDep[i-1].name}}</td>
+              {% else %}
+                <td></td>
+              {% endif %}
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+ 
+
   </div>
 
 {% endif %}
