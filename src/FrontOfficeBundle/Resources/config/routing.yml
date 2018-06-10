@@ -17,3 +17,11 @@ showTrajet:
 addTrajet:
     path:     /addTrajet
     defaults: { _controller: FrontOfficeBundle:Trajet:add }
+
+editTrajet:
+    path: /editTrajet/{id}
+    defaults: { _controller: FrontOfficeBundle:Trajet:edit }
+
+deleteTrajet:
+    path: /deleteTrajet/{id}
+    defaults: { _controller: FrontOfficeBundle:Trajet:delete }

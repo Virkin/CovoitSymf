@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use BackOfficeBundle\Entity\Trajet;
 use BackOfficeBundle\Form\TrajetType;
 use BackOfficeBundle\Repository\TrajetRepository;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 
 class TrajetController extends Controller
 {
@@ -79,6 +81,55 @@ class TrajetController extends Controller
 	    }
 
         return $this->render('FrontOfficeBundle:Trajet:form.html.twig', array(
+            'form' => $form->createView(),
+        ));
+	}
+	function editAction(Request $request, $id)
+	{
+		$trajet = $this->getDoctrine()
+        ->getRepository('BackOfficeBundle:Trajet')
+        ->find($id);
+
+    	$form = $this->createForm(TrajetType::class, $trajet);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+	      	$em = $this->getDoctrine()->getManager();
+	        $em->persist($trajet);
+	        $em->flush($trajet);
+	        $trajet = $form->getData();
+
+	        return $this->redirectToRoute('readTrajet');
+	    }
+
+        return $this->render('FrontOfficeBundle:Trajet:form.html.twig', array(
+            'form' => $form->createView(),
+        ));
+	}
+	function deleteAction(Request $request, $id)
+	{
+		$form = $this->createFormBuilder()
+            ->add('cancel', ButtonType::class, array('label' => 'Cancel'))
+            ->add('delete', SubmitType::class, array('label' => 'Delete'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+		if ($form->isSubmitted() && $form->isValid())
+        {
+			$em = $this->getDoctrine()->getManager();
+	        $trajet = $this->getDoctrine()
+	        ->getRepository('BackOfficeBundle:Trajet')
+	        ->find($id);
+	        $em->remove($trajet);
+	        $em->flush($trajet);
+
+			return $this->redirectToRoute('readTrajet');
+
+		}
+		return $this->render('FrontOfficeBundle:Trajet:delete.html.twig', array(
             'form' => $form->createView(),
         ));
 	}

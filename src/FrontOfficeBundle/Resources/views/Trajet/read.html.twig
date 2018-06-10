@@ -44,7 +44,7 @@
 							<th>Date</th>
 							<th>Nom</th>
 							<th>Prénom</th>
-							<th>Détails</th>
+							<th></th>
 		        </tr>
 	      	</thead>
 	      	<tbody>
@@ -61,6 +61,16 @@
 							  <a href="showTrajet/{{trajet.id}}">
 								  <div class="primary ui icon button">
 								  	<i class="ellipsis horizontal icon"></i>
+								  </div>
+							  </a>
+								<a href="editTrajet/{{trajet.id}}">
+								  <div class="ui yellow icon inverted button">
+								  	<i class="edit icon"></i>
+								  </div>
+							  </a>
+								<a href="deleteTrajet/{{trajet.id}}">
+								  <div class="ui red icon inverted button">
+								  	<i class="trash icon"></i>
 								  </div>
 							  </a>
 						</div>
