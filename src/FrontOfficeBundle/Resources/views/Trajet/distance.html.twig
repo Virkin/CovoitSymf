@@ -1,0 +1,54 @@
+{% extends 'FrontOfficeBundle::Trajet/read.html.twig' %}
+
+{% block header %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="ui raised very padded text container segment">
+
+		<div class="ui info message">
+			<i class="close icon"></i>
+		  	<div class="header">
+		    	Erreur de calcul de la distance
+		  	</div>
+		  	<ul class="list">
+		    	<li>Impossibel de calculer la distance du trajet {{origin}}-{{destination}}</li>
+		    	<li>Veuillez indiquer manuellement la distance</li>
+		  	</ul>
+		</div>
+
+		{{ form_start(form, {'attr':{'class':'ui form'}}) }}
+
+		<h4 class="ui dividing header">Distance</h4>
+      	<div class="field">
+      		{{ form_widget(form.nbKm, { 'attr': {'placeholder': "Distance en kilomètres"} }) }}
+		</div>
+		<div class="ui buttons">
+			<a href="{{ path('readTrajet') }}">{{ form_widget(form.cancel, {'attr':{'class':'ui button'}} ) }}</a>
+				<div class="or"></div>
+			 {{ form_widget(form.save, {'attr':{'class':'ui positive button'}} ) }}
+		</div>
+
+		{{ form_end(form) }}
+	</div>
+
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script>
+		$('.message .close')
+		  .on('click', function() {
+		    $(this)
+		      .closest('.message')
+		      .transition('fade')
+		    ;
+		  })
+		;
+	</script>
+{% endblock %}
