@@ -19,8 +19,11 @@ class TrajetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('nbKm',IntegerType::class, array('attr' => array('min' => 0)))
-        ->add('date',DateTimeType::class, array('data' => new \DateTime(),'widget' => 'single_text','format' => 'yyyy-MM-dd HH:mm:ss'))
+        ->add('date',DateTimeType::class, array('data' => new \DateTime(),
+                                                'widget' => 'single_text',
+                                                'format' => 'yyyy-MM-dd HH:mm:ss', 
+                                                'label' => false, 
+                                                'attr'=>array('style'=>'display:none;',)))
         ->add('villeDep', EntityType::class, array('class' => 'BackOfficeBundle:Ville'))
         ->add('villeArr', EntityType::class, array('class' => 'BackOfficeBundle:Ville'))
         ->add('internaute',EntityType::class, array('class' => 'BackOfficeBundle:Internaute'))

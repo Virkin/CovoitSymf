@@ -24,7 +24,7 @@ class TrajetController extends Controller
 		else
 			$filter = $_POST['filter'];
 
-		if ($filter == "villeDepvilleArr" or $filter == "") {
+		if ($filter == "villeDepvilleArr" ) {
 			$trajet = $this->getDoctrine()
 			->getRepository('BackOfficeBundle:Trajet')
 			->findAllOrderedByName($slug);
@@ -38,6 +38,12 @@ class TrajetController extends Controller
 			$trajet = $this->getDoctrine()
 			->getRepository('BackOfficeBundle:Trajet')
 			->findArrOrderedByName($slug);
+		}
+		else
+		{
+			$trajet = $this->getDoctrine()
+			->getRepository('BackOfficeBundle:Trajet')
+			->findAll();
 		}
 
 
@@ -74,10 +80,11 @@ class TrajetController extends Controller
         if ($form->isSubmitted() && $form->isValid())
         {
 	        $em = $this->getDoctrine()->getManager();
+	        $trajet->setNbKm(0);
 	        $em->persist($trajet);
 	        $em->flush($trajet);
 	        $trajet = $form->getData();
-	        return $this->redirectToRoute('readTrajet');
+	        return $this->redirectToRoute('getDistance',array("id" => $trajet->getId()));
 	    }
 
         return $this->render('FrontOfficeBundle:Trajet:form.html.twig', array(
@@ -97,11 +104,12 @@ class TrajetController extends Controller
         if ($form->isSubmitted() && $form->isValid())
         {
 	      	$em = $this->getDoctrine()->getManager();
+	      	$trajet->setNbKm(0);
 	        $em->persist($trajet);
 	        $em->flush($trajet);
 	        $trajet = $form->getData();
 
-	        return $this->redirectToRoute('readTrajet');
+	        return $this->redirectToRoute('getDistance',array("id" => $trajet->getId()));
 	    }
 
         return $this->render('FrontOfficeBundle:Trajet:form.html.twig', array(
@@ -133,4 +141,59 @@ class TrajetController extends Controller
             'form' => $form->createView(),
         ));
 	}
+
+	function getDistanceAction($id)
+	{
+		$trajet = $this->getDoctrine()
+        ->getRepository('BackOfficeBundle:Trajet')
+        ->find($id);
+
+		$key="AIzaSyCWsXEhKOGoPqqiLBopZ-DEDRm-DDJf-QA";
+
+		$origin = $trajet->getVilleDep();
+		$origin = substr($origin,0, strpos($origin,'(') - 1);
+		$origin = str_replace(' ', '+', $origin);
+
+		$destination = $trajet->getVilleArr();
+		$destination = substr($destination,0, strpos($destination,'(') - 1);
+		$destination = str_replace(' ', '+', $destination);
+
+		$url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=".$origin."&destinations=".$destination."&key=".$key;
+		
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$resp = curl_exec($ch);
+
+		$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+		if ($httpCode == 200)
+		{
+			$resp = json_decode($resp, true);	
+		}
+		else
+		{
+			$resp = "nope";
+		}
+		
+		curl_close($ch);
+
+		if ($resp["status"] == "OK" && $resp["rows"][0]["elements"][0]["status"] == "OK")
+		{
+			$distance = (int) round($resp["rows"][0]["elements"][0]["distance"]["value"]/1000);
+		}
+		else
+		{
+			$distance = 0;
+		}
+
+		$em = $this->getDoctrine()->getManager();
+
+		$trajet->setNbKm($distance);
+
+		$em->persist($trajet);
+	    $em->flush($trajet);
+
+		return $this->redirectToRoute('readTrajet');
+	}
 }
+	

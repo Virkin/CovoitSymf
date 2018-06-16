@@ -25,3 +25,7 @@ editTrajet:
 deleteTrajet:
     path: /deleteTrajet/{id}
     defaults: { _controller: FrontOfficeBundle:Trajet:delete }
+
+getDistance:
+    path: /getDistance/{id}
+    defaults: { _controller: FrontOfficeBundle:Trajet:getDistance}

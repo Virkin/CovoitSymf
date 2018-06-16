@@ -10,6 +10,19 @@ namespace BackOfficeBundle\Repository;
  */
 class trajetRepository extends \Doctrine\ORM\EntityRepository
 {
+  public function findAll()
+  {
+    return $this->getEntityManager()
+      ->createQuery(
+        'SELECT trajet.id as id, trajet.nbKm as nbKm, trajet.date as date, cityDep.ville as villeDep, cityArr.ville as villeArr, user.nom as nom, user.prenom as prenom
+        FROM BackOfficeBundle:Trajet trajet
+        JOIN BackOfficeBundle:Ville cityDep WITH cityDep.id=trajet.villeDep
+        JOIN BackOfficeBundle:Ville cityArr WITH cityArr.id=trajet.villeArr
+        JOIN BackOfficeBundle:Internaute user WITH user.id=trajet.internaute
+        ORDER BY trajet.date')
+      ->getResult();
+  }
+
   public function findAllOrderedByName($slug)
   {
   	$search = $slug;
