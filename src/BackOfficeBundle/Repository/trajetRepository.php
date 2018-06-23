@@ -86,4 +86,18 @@ class trajetRepository extends \Doctrine\ORM\EntityRepository
       )
   		->getResult();
   }
+  
+  public function findByPlace()
+  {
+    return $this->getEntityManager()
+      ->createQuery(
+        "SELECT trajet.id as id, cityDep.ville as villeDep, cityArr.ville as villeArr, voiture.nbPlaces as nbPlaces
+        FROM BackOfficeBundle:Trajet trajet
+        JOIN BackOfficeBundle:Ville cityDep WITH cityDep.id=trajet.villeDep
+        JOIN BackOfficeBundle:Ville cityArr WITH cityArr.id=trajet.villeArr
+        JOIN BackOfficeBundle:Internaute user WITH user.id=trajet.internaute
+        JOIN BackOfficeBundle:Voiture voiture WITH user.voiture=voiture.id"
+      )
+      ->getResult();
+  }
 }

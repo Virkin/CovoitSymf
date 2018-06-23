@@ -115,4 +115,3 @@ class Voiture
         return $this->marque.' '.$this->modele;
     }
 }
-

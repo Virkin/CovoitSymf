@@ -17,11 +17,11 @@
 
     <div class="ui container horizontal segments">
       <div class="ui segment">
-        <table class="ui celled collapsing table">
+         <table class="ui celled collapsing table">
           <thead>
             <tr>
               <th></th>
-              <th>Top Ville Arrivée</th>
+              <th>Top Ville Départ</th>
             </tr>
           </thead>
           <tbody>
@@ -37,8 +37,8 @@
                   <td><div class="ui white label">{{i}}</div></td>
               {% endif %}
       
-              {% if topVilleArr[i-1] is defined %}
-                <td>{{topVilleArr[i-1].name}}</td>
+              {% if topVilleDep[i-1] is defined %}
+                <td>{{topVilleDep[i-1].name}}</td>
               {% else %}
                 <td></td>
               {% endif %}
@@ -70,11 +70,11 @@
       </div>
 
       <div class="ui segment">
-         <table class="ui celled collapsing table">
+        <table class="ui celled collapsing table">
           <thead>
             <tr>
               <th></th>
-              <th>Top Ville Départ</th>
+              <th>Top Ville Arrivée</th>
             </tr>
           </thead>
           <tbody>
@@ -90,8 +90,8 @@
                   <td><div class="ui white label">{{i}}</div></td>
               {% endif %}
       
-              {% if topVilleDep[i-1] is defined %}
-                <td>{{topVilleDep[i-1].name}}</td>
+              {% if topVilleArr[i-1] is defined %}
+                <td>{{topVilleArr[i-1].name}}</td>
               {% else %}
                 <td></td>
               {% endif %}
@@ -100,6 +100,7 @@
           </tbody>
         </table>
       </div>
+      
  
 
   </div>

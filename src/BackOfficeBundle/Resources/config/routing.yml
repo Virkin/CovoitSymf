@@ -62,6 +62,10 @@ editVille:
     path: /editVille/{id}
     defaults: { _controller: BackOfficeBundle:Ville:edit }
 
-deleteVillz:
+deleteVille:
     path: /deleteVille/{id}
     defaults: { _controller: BackOfficeBundle:Ville:delete }
+
+readInscription:
+    path: /readInscription
+    defaults: { _controller: BackOfficeBundle:Inscription:read }
