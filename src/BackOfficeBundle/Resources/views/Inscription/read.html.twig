@@ -16,6 +16,7 @@
 	  	<table class="ui celled table">
 			<thead>
 		        <tr>
+			        <th>Id</th>
 			        <th>Dep</th>
 		         	<th>Arr</th>
 		         	<th>Nb Place(s)</th>
@@ -25,10 +26,17 @@
 	      	<tbody>
 			{% for trajet in trajets %}
 				<tr>
+					<td>{{trajet.id}}</td>
 					<td>{{trajet.villeDep}}</td>
 					<td>{{trajet.villeArr}}</td>
 					<td>{{trajet.nbPlaces}}</td>
-					<td></td>
+					<td>
+						<a href="participant/{{trajet.id}}">
+							<div class="ui primary icon button">
+							  	<i class="group icon"></i> Participants
+							</div>
+						</a>
+					</td>
 				</tr>
 			{% endfor %}
 			</tbody>

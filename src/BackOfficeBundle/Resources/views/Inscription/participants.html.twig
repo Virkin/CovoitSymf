@@ -1,0 +1,57 @@
+{% extends 'BackOfficeBundle::Default/backOffice.html.twig' %}
+{% set current = 'Inscription' %}
+
+{% block header %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<div class="ui container segment">
+	  	<table class="ui table">
+			<thead>
+		        <tr>
+			        <th>Rôle</th>
+			        <th>Nom</th>
+			        <th>Prenom</th>
+		        </tr>
+	      	</thead>
+	      	<tbody>
+          {% for i in 1..conducteur[0].nbPlaces %}
+            <tr>
+              	{% if i == 1 %}
+                	<td><div class="ui red ribbon label">Conducteur</div></td>
+                	<td>{{conducteur[i-1].nom}}</td>
+                	<td>{{conducteur[i-1].prenom}}</td>
+              	{% else %}
+                  	<td><div class="ui white label">Passager</div></td>
+                  	{% if participants[i-2] is defined %}
+	                	<td>{{participants[i-2].nom}}</td>
+	                	<td>{{participants[i-2].prenom}}</td>
+	              	{% else %}
+	                	<td></td>
+	                	<td></td>
+	                {% endif %}
+              	{% endif %}
+      		</tr>
+          {% endfor %}
+          </tbody>
+          <tfoot>
+          	<tr>
+          		<th colspan="3">
+          			<a href="{{ path('addPassager', {'id':conducteur[0].id} ) }}">
+	          			<div class="ui right floated small primary labeled icon button">
+	          				<i class="user icon"></i> Add Passager
+	        			</div>
+	        		</a>
+        		</th>
+        	</tr>	
+          </tfoot>
+		</table>
+	</div>
+
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+{% endblock %}
