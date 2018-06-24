@@ -69,3 +69,15 @@ deleteVille:
 readInscription:
     path: /readInscription
     defaults: { _controller: BackOfficeBundle:Inscription:read }
+
+participant:
+    path: /participant/{id}
+    defaults: { _controller: BackOfficeBundle:Inscription:participant }
+
+addPassager:
+    path: /addPassager/{id}
+    defaults: { _controller: BackOfficeBundle:Inscription:addPassager }
+
+deletePassager:
+    path: /deletePassager/{idTrajet}/{idPassager}
+    defaults: { _controller: BackOfficeBundle:Inscription:deletePassager }

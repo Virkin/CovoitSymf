@@ -19,7 +19,7 @@ class trajetRepository extends \Doctrine\ORM\EntityRepository
         JOIN BackOfficeBundle:Ville cityDep WITH cityDep.id=trajet.villeDep
         JOIN BackOfficeBundle:Ville cityArr WITH cityArr.id=trajet.villeArr
         JOIN BackOfficeBundle:Internaute user WITH user.id=trajet.internaute
-        ORDER BY trajet.date')
+        ORDER BY trajet.date DESC')
       ->getResult();
   }
 
@@ -34,8 +34,8 @@ class trajetRepository extends \Doctrine\ORM\EntityRepository
         JOIN BackOfficeBundle:Ville cityDep WITH cityDep.id=trajet.villeDep
         JOIN BackOfficeBundle:Ville cityArr WITH cityArr.id=trajet.villeArr
         JOIN BackOfficeBundle:Internaute user WITH user.id=trajet.internaute
-        WHERE UPPER(cityDep.ville) LIKE UPPER(:search) OR UPPER(cityArr.ville) LIKE UPPER(:search)'
-      )
+        WHERE UPPER(cityDep.ville) LIKE UPPER(:search) OR UPPER(cityArr.ville) LIKE UPPER(:search)
+        ORDER BY trajet.date DESC')
   		->setParameter('search', '%'.$search.'%')
   		->getResult();
   }
@@ -50,8 +50,8 @@ class trajetRepository extends \Doctrine\ORM\EntityRepository
         JOIN BackOfficeBundle:Ville cityDep WITH cityDep.id=trajet.villeDep
         JOIN BackOfficeBundle:Ville cityArr WITH cityArr.id=trajet.villeArr
         JOIN BackOfficeBundle:Internaute user WITH user.id=trajet.internaute
-        WHERE UPPER(cityDep.ville) LIKE UPPER(:search)'
-      )
+        WHERE UPPER(cityDep.ville) LIKE UPPER(:search)
+        ORDER BY trajet.date DESC')
   		->setParameter('search', '%'.$search.'%')
   		->getResult();
   }
@@ -66,8 +66,8 @@ class trajetRepository extends \Doctrine\ORM\EntityRepository
         JOIN BackOfficeBundle:Ville cityDep WITH cityDep.id=trajet.villeDep
         JOIN BackOfficeBundle:Ville cityArr WITH cityArr.id=trajet.villeArr
         JOIN BackOfficeBundle:Internaute user WITH user.id=trajet.internaute
-        WHERE UPPER(cityArr.ville) LIKE UPPER(:search)'
-      )
+        WHERE UPPER(cityArr.ville) LIKE UPPER(:search)
+        ORDER BY trajet.date DESC')
   		->setParameter('search', '%'.$search.'%')
   		->getResult();
   }
@@ -96,7 +96,8 @@ class trajetRepository extends \Doctrine\ORM\EntityRepository
         JOIN BackOfficeBundle:Ville cityDep WITH cityDep.id=trajet.villeDep
         JOIN BackOfficeBundle:Ville cityArr WITH cityArr.id=trajet.villeArr
         JOIN BackOfficeBundle:Internaute user WITH user.id=trajet.internaute
-        JOIN BackOfficeBundle:Voiture voiture WITH user.voiture=voiture.id"
+        JOIN BackOfficeBundle:Voiture voiture WITH user.voiture=voiture.id
+        ORDER BY trajet.id ASC"
       )
       ->getResult();
   }
