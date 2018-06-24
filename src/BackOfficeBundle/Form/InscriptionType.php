@@ -19,13 +19,12 @@ class InscriptionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $this->idConducteur = $options["id"];
+        $this->idTrajet = $options["idTrajet"];
+        $this->idConducteur = $options["idConducteur"];
         $builder
             ->add('internaute',EntityType::class, array('class' => 'BackOfficeBundle:Internaute',
                                                         'query_builder' => function (EntityRepository $er) {
-                                                        return $er->createQueryBuilder('u')
-                                                        ->where('u.id != :id')
-                                                        ->setParameter('id', $this->idConducteur);}
+                                                        return $er->findInternauteNotInTrajet($this->idTrajet, $this->idConducteur);}
                                                     ))
             ->add('cancel', ButtonType::class, array('label' => 'Cancel'))
             ->add('save', SubmitType::class, array('label' => 'Save'));
@@ -38,7 +37,8 @@ class InscriptionType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'BackOfficeBundle\Entity\Inscription',
-            'id' => NULL,
+            'idTrajet' => NULL,
+            'idConducteur' => NULL,
         ));
     }
 

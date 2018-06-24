@@ -18,12 +18,21 @@ class InscriptionController extends Controller
 	{
 		$trajets = $this->getDoctrine()->getManager()->getRepository('BackOfficeBundle:Trajet')->findByPlace();
 
+		$nbPassagers = array();
+
+		for($i = 0; $i < count($trajets) ; $i++)
+		{
+			array_push($nbPassagers, $this->getDoctrine()->getManager()
+				->getRepository('BackOfficeBundle:Inscription')->countPassager($trajets[$i]["id"])[0]["nbPassager"]);
+		}
+
 	    if (!$trajets) {
 	        $trajets = NULL;
 	    }
 
 	    return $this->render('BackOfficeBundle:Inscription:read.html.twig', array(
 	        'trajets' => $trajets,
+	        'nbPassagers' => $nbPassagers
 	    ));
 	}
 
@@ -55,7 +64,7 @@ class InscriptionController extends Controller
 			->getRepository('BackOfficeBundle:Trajet')
 			->find($id);
 
-        $form = $this->createForm(InscriptionType::class, $passager, array('id'=>$trajet->getInternaute()));
+        $form = $this->createForm(InscriptionType::class, $passager, array('idTrajet'=>$id,'idConducteur'=>$trajet->getInternaute()));
 
         $form->handleRequest($request);
 

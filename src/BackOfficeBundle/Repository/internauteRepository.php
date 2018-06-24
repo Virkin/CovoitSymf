@@ -10,6 +10,16 @@ namespace BackOfficeBundle\Repository;
  */
 class internauteRepository extends \Doctrine\ORM\EntityRepository
 {
-
-	
+	public function findInternauteNotInTrajet($idTrajet, $idConducteur)
+	{	
+		return $this->getEntityManager()
+			->createQueryBuilder()
+		    ->select('user')
+		    ->from('BackOfficeBundle:Internaute','user')
+		    ->leftjoin('BackOfficeBundle:Inscription','ins', 'WITH', 'ins.internaute=user')
+		    ->where('user.id != :idConducteur')
+		    ->andWhere('ins.trajet != :idTrajet OR ins.trajet is NULL')
+			->setParameter('idTrajet', $idTrajet)
+			->setParameter('idConducteur', $idConducteur);
+	}
 }

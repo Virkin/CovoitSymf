@@ -35,4 +35,15 @@ class inscriptionRepository extends \Doctrine\ORM\EntityRepository
 		    ->getResult();
 	}
 
+	public function countPassager($id)
+	{
+		return $this->getEntityManager()
+			->createQuery(
+			'SELECT count(inscription) as nbPassager
+			FROM BackOfficeBundle:Inscription inscription
+			WHERE inscription.trajet= :id')
+			->setParameter('id', $id)
+			->getResult();
+	}
+
 }

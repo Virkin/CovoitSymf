@@ -24,12 +24,13 @@
 		        </tr>
 	      	</thead>
 	      	<tbody>
+			{% set i = 0 %}
 			{% for trajet in trajets %}
 				<tr>
 					<td>{{trajet.id}}</td>
 					<td>{{trajet.villeDep}}</td>
 					<td>{{trajet.villeArr}}</td>
-					<td>{{trajet.nbPlaces}}</td>
+					<td>{{trajet.nbPlaces - nbPassagers[i] - 1}}</td>
 					<td>
 						<a href="participant/{{trajet.id}}">
 							<div class="ui primary icon button">
@@ -38,6 +39,7 @@
 						</a>
 					</td>
 				</tr>
+				{% set i = i + 1 %}
 			{% endfor %}
 			</tbody>
 		</table>
