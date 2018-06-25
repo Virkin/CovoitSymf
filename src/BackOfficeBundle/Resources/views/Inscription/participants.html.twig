@@ -55,7 +55,7 @@
 	        			</div>
 	        		</a>
           			<a href="{{ path('addPassager', {'id':conducteur[0].id} ) }}">
-	          			<div class="ui {% if participants[conducteur[0].nbPlaces-2] is defined %} disabled {% endif %} right floated small primary labeled icon button">
+	          			<div class="ui {% if participants[conducteur[0].nbPlaces-2] is defined %} disabled {% elseif nbFreeUser == 0 %} disabled {% endif %} right floated small primary labeled icon button">
 	          				<i class="user icon"></i> Add Passager
 	        			</div>
 	        		</a>

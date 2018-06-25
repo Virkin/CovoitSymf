@@ -46,13 +46,27 @@ class InscriptionController extends Controller
 		->getRepository('BackOfficeBundle:Inscription')
 		->findPassagers($id);
 
-		if (!$participants) {
+		$trajet = $this->getDoctrine()
+			->getRepository('BackOfficeBundle:Trajet')
+			->find($id);
+
+		$nbFreeUser = $this->getDoctrine()->getRepository('BackOfficeBundle:Internaute')
+										  ->findInternauteNotInTrajet($id,$trajet->getInternaute())
+										  ->select('count(user)')
+										  ->getQuery()
+										  ->getSingleScalarResult();
+										  
+
+		dump($nbFreeUser);
+
+		if (!$participants) { 
 	        $participants = NULL;
 	    }
 
 		return $this->render('BackOfficeBundle:Inscription:participants.html.twig', array(
 	        'conducteur' => $conducteur,
 	        'participants' => $participants,
+	        'nbFreeUser' => $nbFreeUser,
 	    ));
 	}
 
