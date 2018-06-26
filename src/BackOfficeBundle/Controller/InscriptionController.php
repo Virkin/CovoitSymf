@@ -56,9 +56,6 @@ class InscriptionController extends Controller
 										  ->getQuery()
 										  ->getSingleScalarResult();
 										  
-
-		dump($nbFreeUser);
-
 		if (!$participants) { 
 	        $participants = NULL;
 	    }

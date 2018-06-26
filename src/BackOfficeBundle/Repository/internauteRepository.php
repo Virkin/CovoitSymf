@@ -33,7 +33,11 @@ class internauteRepository extends \Doctrine\ORM\EntityRepository
 			->setParameter('idConducteur', $idConducteur);
 
 		for ($i=0; $i < count($userInTrajet); $i++)
-			$qb->andWhere('user.id != :idUserInTrajet')->setParameter('idUserInTrajet',$userInTrajet[$i]["id"]);
+		{
+			$label = "idUserInTrajet".$i;
+			$whereStr = "user.id != :".$label;
+			$qb->andWhere($whereStr)->setParameter($label,$userInTrajet[$i]["id"]);
+		}
 
 		return $qb;
 	}
