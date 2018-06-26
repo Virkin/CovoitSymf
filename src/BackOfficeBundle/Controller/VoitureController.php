@@ -108,12 +108,26 @@ class VoitureController extends Controller
 
 		if ($form->isSubmitted() && $form->isValid()) 
         {
-			$em = $this->getDoctrine()->getManager();
-	        $voiture = $this->getDoctrine()
-	        ->getRepository('BackOfficeBundle:Voiture')
-	        ->find($id);
-	        $em->remove($voiture);
-	        $em->flush($voiture);
+			try
+			{
+				$em = $this->getDoctrine()->getManager();
+	        	$voiture = $this->getDoctrine()
+	        	->getRepository('BackOfficeBundle:Voiture')
+	        	->find($id);
+	        	$em->remove($voiture);
+	        	$em->flush($voiture);
+			}
+			catch(\Exception $e)
+			{
+				$error = "Impossible de supprimer la voiture";
+				$description = "Veuillez vérifier si des internautes ne sont pas associés à cet voiture";
+				return $this->render('BackOfficeBundle:Default:error.html.twig', array(
+            		'error' => $error,
+            		'description' => $description,
+            		'route' => 'readVoiture',
+        		));
+			}
+			
 
 			return $this->redirectToRoute('readVoiture');
 		

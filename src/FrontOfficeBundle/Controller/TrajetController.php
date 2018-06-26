@@ -129,9 +129,21 @@ class TrajetController extends Controller
 		if ($form->isSubmitted() && $form->isValid())
         {
 			$em = $this->getDoctrine()->getManager();
-	        $trajet = $this->getDoctrine()
+	        
+			$inscriptionTrajet = $this->getDoctrine()
+			->getRepository('BackOfficeBundle:Inscription')
+			->findByTrajet($id);
+			
+			for($i=0; $i < count($inscriptionTrajet); $i++)
+			{
+				$em->remove($inscriptionTrajet[$i]);
+	        	$em->flush($inscriptionTrajet[$i]);
+			}
+			
+			$trajet = $this->getDoctrine()
 	        ->getRepository('BackOfficeBundle:Trajet')
 	        ->find($id);
+
 	        $em->remove($trajet);
 	        $em->flush($trajet);
 

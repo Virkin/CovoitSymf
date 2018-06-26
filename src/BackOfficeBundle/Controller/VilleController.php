@@ -84,12 +84,25 @@ class VilleController extends Controller
 
 		if ($form->isSubmitted() && $form->isValid()) 
         {
+			try
+			{
 			$em = $this->getDoctrine()->getManager();
 	        $ville = $this->getDoctrine()
 	        ->getRepository('BackOfficeBundle:Ville')
 	        ->find($id);
 	        $em->remove($ville);
 	        $em->flush($ville);
+	        }
+	        catch(\Exception $e)
+			{
+				$error = "Impossible de supprimer la ville";
+				$description = "Veuillez vérifier si la ville n'est pas associé à un internaute ou à un trajet";
+				return $this->render('BackOfficeBundle:Default:error.html.twig', array(
+            		'error' => $error,
+            		'description' => $description,
+            		'route' => 'readVille',
+        		));
+			}
 
 			return $this->redirectToRoute('readVille');
 		

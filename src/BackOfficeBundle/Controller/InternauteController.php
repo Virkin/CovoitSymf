@@ -89,12 +89,25 @@ class InternauteController extends Controller
 
 		if ($form->isSubmitted() && $form->isValid())
         {
-			$em = $this->getDoctrine()->getManager();
-	        $internaute = $this->getDoctrine()
-	        ->getRepository('BackOfficeBundle:Internaute')
-	        ->find($id);
-	        $em->remove($internaute);
-	        $em->flush($internaute);
+			try
+			{
+				$em = $this->getDoctrine()->getManager();
+		        $internaute = $this->getDoctrine()
+		        ->getRepository('BackOfficeBundle:Internaute')
+		        ->find($id);
+		        $em->remove($internaute);
+		        $em->flush($internaute);
+	        }
+	        catch(\Exception $e)
+			{
+				$error = "Impossible de supprimer l'internaute";
+				$description = "Veuillez vérifier si l'internaute n'est pas associé à un trajet";
+				return $this->render('BackOfficeBundle:Default:error.html.twig', array(
+            		'error' => $error,
+            		'description' => $description,
+            		'route' => 'readInternaute',
+        		));
+			}
 
 			return $this->redirectToRoute('readInternaute');
 
