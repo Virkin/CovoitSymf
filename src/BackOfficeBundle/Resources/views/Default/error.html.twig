@@ -1,0 +1,32 @@
+{% extends 'BackOfficeBundle::Default/backOffice.html.twig' %}
+{% set current = 'Home' %}
+
+{% block header %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<div class="ui raised very padded text container segment">
+	  	<div class="ui visible negative message">
+		  	<div class="header">
+		    	{{error}}
+		  	</div>
+		  	<p>{{description}}</p>
+		</div>
+	  	{% if options is defined %}
+	  		<a href="{{ path(route , options) }}">
+	  	{% else %}
+	  		<a href="{{ path(route) }}">
+	  	{% endif %}
+	  		<div class="ui left floated small labeled icon button">
+				<i class="angle left icon"></i> Return
+			</div>
+		</a>
+	</div>
+
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+{% endblock %}
