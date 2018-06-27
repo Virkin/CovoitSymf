@@ -30,12 +30,10 @@ class StatistiquesController extends Controller
 		$qb = $em->createQuery("SELECT ville as name, count(tr.id) AS HIDDEN nbTrajet FROM BackOfficeBundle:trajet AS tr JOIN BackOfficeBundle:ville AS ville WITH ville.id=tr.villeArr GROUP BY tr.villeArr ORDER BY nbTrajet DESC");
 		
 		$topVilleArr = $qb->getResult();
-		dump($topVilleArr);
 
 		$qb = $em->createQuery("SELECT ville as name, count(tr.id) AS HIDDEN nbTrajet FROM BackOfficeBundle:trajet AS tr JOIN BackOfficeBundle:ville AS ville WITH ville.id=tr.villeDep GROUP BY tr.villeDep ORDER BY nbTrajet DESC");
 		
 		$topVilleDep = $qb->getResult();
-		dump($topVilleDep);
 
 	    if (!$statistiques) {
 	        $nb_internautes = NULL;
