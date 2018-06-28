@@ -1,5 +1,24 @@
-Pour semantic:
+# Covoit Symf
+Site web de covoiturage pour le projet symfony. 
 
-dans chaque .twig, faire : {% extends 'base.html.twig' %} au début.
-Et voir la doc pour voir comment ca marche. 
+## Installation
 
+### Installer Composer :
+
+```bash
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+```
+
+### Installation de la base de données :
+
+```bash
+php app/console doctrine:schema:update --force
+```
+
+## Utilisation
+
+Front Office Url : ```[votre url]/admin```
+Back Office Url : ```
