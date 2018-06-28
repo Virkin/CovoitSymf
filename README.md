@@ -3,7 +3,7 @@ Site web de covoiturage en symfony.
 
 ## Installation (Linux)
 
-> Faire les commandes suivantes dans le repertoire du site.
+> Faire les commandes ci-dessous dans le repertoire du site.
 
 ### Installer Composer :
 
@@ -28,12 +28,10 @@ php bin/console doctrine:schema:update --force
 
 ## Utilisation
 
-### Front Office Url : 
+### Front Office Url : http://prjsymf.cir3-frm-smf-ang-33
 
-http://prjsymf.cir3-frm-smf-ang-33
+### Back Office Url : http://prjsymf.cir3-frm-smf-ang-33/adminbo
 
-### Back Office Url : 
-
-http://prjsymf.cir3-frm-smf-ang-33/adminbo
+### Web Service Url : http://prjsymf.cir3-frm-smf-ang-33/api
 
 
