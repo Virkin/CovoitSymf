@@ -20,6 +20,12 @@ php app/console doctrine:schema:update --force
 
 ## Utilisation
 
-Front Office Url : ```prjsymf.cir3-frm-smf-ang-33```
-Back Office Url : ```prjsymf.cir3-frm-smf-ang-33/adminbo```
+### Front Office Url : 
+```http
+prjsymf.cir3-frm-smf-ang-33
+```
+### Back Office Url : 
+```http
+prjsymf.cir3-frm-smf-ang-33/adminbo
+```
 
