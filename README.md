@@ -1,7 +1,9 @@
 # Covoit Symf
-Site web de covoiturage pour le projet symfony. 
+Site web de covoiturage en symfony. 
 
-## Installation
+## Installation (Linux)
+
+> Faire les commandes suivantes dans le repertoire du site.
 
 ### Installer Composer :
 
@@ -12,10 +14,16 @@ php composer-setup.php
 php -r "unlink('composer-setup.php');"
 ```
 
+### Installation de Symfony
+
+```bash
+php composer.phar install
+```
+
 ### Installation de la base de données :
 
 ```bash
-php app/console doctrine:schema:update --force
+php bin/console doctrine:schema:update --force
 ```
 
 ## Utilisation
