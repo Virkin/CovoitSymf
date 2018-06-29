@@ -13,96 +13,110 @@ use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 
 class VoitureController extends Controller
 {
+	// affiche la liste des voitures
 	function readAction()
-	{	
+	{
+		// recupère la liste des voitures
 		$voitures = $this->getDoctrine()->getManager()->getRepository('BackOfficeBundle:Voiture')->findAll();
 
-	    if (!$voitures) {
-	        $voitures = NULL;
-	    }
+		if (!$voitures) {
+			$voitures = NULL;
+		}
 
-	    return $this->render('BackOfficeBundle:Voiture:read.html.twig', array(
-	        'voitures' => $voitures,
-	    ));
+		// renvoie à la vue la liste des voitures
+		return $this->render('BackOfficeBundle:Voiture:read.html.twig', array(
+			'voitures' => $voitures,
+		));
 	}
 
+	// ajoute une voiture
 	function addAction(Request $request)
 	{
 		$voiture = new Voiture();
 
-        $form = $this->createForm(VoitureType::class, $voiture);
+		$form = $this->createForm(VoitureType::class, $voiture);
 
-        $form->handleRequest($request);
+		$form->handleRequest($request);
       
-        if ($form->isSubmitted() && $form->isValid()) 
-        {
-	      	$em = $this->getDoctrine()->getManager();
-	        $em->persist($voiture);
-	        $em->flush($voiture);
-	        $voiture = $form->getData();
+		if ($form->isSubmitted() && $form->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($voiture);
+			$em->flush($voiture);
+			$voiture = $form->getData();
 	    	
-	        return $this->redirectToRoute('readVoiture');
-	    }
+			return $this->redirectToRoute('readVoiture');
+		}
 
-        return $this->render('BackOfficeBundle:Voiture:form.html.twig', array(
-            'form' => $form->createView(),
-        ));
+		// renvoie à la vue le formulaire
+		return $this->render('BackOfficeBundle:Voiture:form.html.twig', array(
+			'form' => $form->createView(),
+		));
 	}
 
+	// ajoute une marque
 	function addMarqueAction(Request $request)
 	{
 		$marque = new Marque();
 
-        $form = $this->createForm(MarqueType::class, $marque);
+		// création d'un formulaire Marque
+		$form = $this->createForm(MarqueType::class, $marque);
 
-        $form->handleRequest($request);
+		$form->handleRequest($request);
       
-        if ($form->isSubmitted() && $form->isValid()) 
-        {
-	      	$em = $this->getDoctrine()->getManager();
-	        $em->persist($marque);
-	        $em->flush($marque);
-	        $voiture = $form->getData();
-	    	
-	        return $this->redirectToRoute('addVoiture');
-	    }
+		if ($form->isSubmitted() && $form->isValid())
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($marque);
+			$em->flush($marque);
+			$voiture = $form->getData();
+	    		// redirige vers le formulaire addVoiture après avoir créer une marque
+		        return $this->redirectToRoute('addVoiture');
+		}
 
-        return $this->render('BackOfficeBundle:Voiture:marque.html.twig', array(
-            'form' => $form->createView(),
-        ));
+		// renvoie à la vue le formulaire
+		return $this->render('BackOfficeBundle:Voiture:marque.html.twig', array(
+			'form' => $form->createView(),
+		));
 	}
 
+	// modifie une voiture 
 	function editAction(Request $request, $id)
 	{
+		// récupère la voiture via son id
 		$voiture = $this->getDoctrine()
-        ->getRepository('BackOfficeBundle:Voiture')
-        ->find($id);
+		->getRepository('BackOfficeBundle:Voiture')
+		->find($id);
 
-    	$form = $this->createForm(VoitureType::class, $voiture);
+		// création du formulaire
+		$form = $this->createForm(VoitureType::class, $voiture);
 
-        $form->handleRequest($request);
-      
-        if ($form->isSubmitted() && $form->isValid()) 
-        {
-	      	$em = $this->getDoctrine()->getManager();
-	        $em->persist($voiture);
-	        $em->flush($voiture);
-	        $voiture = $form->getData();
-	    	
-	        return $this->redirectToRoute('readVoiture');
-	    }
+		// remplissage du formulaire
+        	$form->handleRequest($request);
 
-        return $this->render('BackOfficeBundle:Voiture:form.html.twig', array(
-            'form' => $form->createView(),
-        ));
+		if ($form->isSubmitted() && $form->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($voiture);
+			$em->flush($voiture);
+			$voiture = $form->getData();
+			// redirige vers la liste des voiture
+			return $this->redirectToRoute('readVoiture');
+		}
+
+		// renvoie à la vue le formulaire
+		return $this->render('BackOfficeBundle:Voiture:form.html.twig', array(
+			'form' => $form->createView(),
+		));
 	}
 
+	// supression voiture
 	function deleteAction(Request $request, $id)
 	{
 		$form = $this->createFormBuilder()
-            ->add('cancel', ButtonType::class, array('label' => 'Cancel'))
-            ->add('delete', SubmitType::class, array('label' => 'Delete'))
-            ->getForm();
+		->add('cancel', ButtonType::class, array('label' => 'Cancel'))
+		->add('delete', SubmitType::class, array('label' => 'Delete'))
+		->getForm();
 
         $form->handleRequest($request);
 
