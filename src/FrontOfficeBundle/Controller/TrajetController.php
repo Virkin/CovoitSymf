@@ -13,8 +13,10 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class TrajetController extends Controller
 {
+	// affiche la liste des trajets suiant les paramètres de la recherche
 	function readAction()
 	{
+		// récupération des valeurs du formulaire de recherche
 		if (! isset($_POST['input_search']))
 			$slug = "";
 		else
@@ -56,6 +58,7 @@ class TrajetController extends Controller
 			'trajets' => $trajet
 		));
 	}
+	// affiche le détail d'un trajet via son id
 	function showAction($id)
 	{
 		$trajet = $this->getDoctrine()
@@ -70,6 +73,7 @@ class TrajetController extends Controller
 	        'trajet' => $trajet,
 	    ));
 	}
+	// ajout d'un trajet
 	function addAction(Request $request)
 	{
 		$trajet = new Trajet();
@@ -85,6 +89,7 @@ class TrajetController extends Controller
 	        $em->persist($trajet);
 	        $em->flush($trajet);
 	        $trajet = $form->getData();
+					// redirige vers la fonction getDistance permettant de calculer la distance entre deux villes
 	        return $this->redirectToRoute('getDistance',array("id" => $trajet->getId()));
 	    }
 
@@ -92,6 +97,7 @@ class TrajetController extends Controller
             'form' => $form->createView(),
         ));
 	}
+	// modification du trajet
 	function editAction(Request $request, $id)
 	{
 		$trajet = $this->getDoctrine()
@@ -109,7 +115,7 @@ class TrajetController extends Controller
 	        $em->persist($trajet);
 	        $em->flush($trajet);
 	        $trajet = $form->getData();
-
+					// redirige vers la fonction getDistance permettant de calculer la distance entre deux villes
 	        return $this->redirectToRoute('getDistance',array("id" => $trajet->getId()));
 	    }
 
@@ -119,6 +125,7 @@ class TrajetController extends Controller
 	}
 	function deleteAction(Request $request, $id)
 	{
+		// confirmation de la suppression
 		$form = $this->createFormBuilder()
             ->add('cancel', ButtonType::class, array('label' => 'Cancel'))
             ->add('delete', SubmitType::class, array('label' => 'Delete'))
@@ -129,17 +136,18 @@ class TrajetController extends Controller
 		if ($form->isSubmitted() && $form->isValid())
         {
 			$em = $this->getDoctrine()->getManager();
-	        
+
 			$inscriptionTrajet = $this->getDoctrine()
 			->getRepository('BackOfficeBundle:Inscription')
 			->findByTrajet($id);
-			
+
+			// suppression des inscriptions lier au trajet
 			for($i=0; $i < count($inscriptionTrajet); $i++)
 			{
 				$em->remove($inscriptionTrajet[$i]);
 	        	$em->flush($inscriptionTrajet[$i]);
 			}
-			
+
 			$trajet = $this->getDoctrine()
 	        ->getRepository('BackOfficeBundle:Trajet')
 	        ->find($id);
@@ -155,13 +163,15 @@ class TrajetController extends Controller
         ));
 	}
 
+	// effectue une requête vers l'api google pour avoir la distance en km entre le deux villes
+	// si pas de connexion l'utilisateur saise manuellement la distance
 	function getDistanceAction(Request $request, $id)
 	{
 		$trajet = $this->getDoctrine()
         ->getRepository('BackOfficeBundle:Trajet')
         ->find($id);
 
-		$form = $this->createFormBuilder() 
+		$form = $this->createFormBuilder()
 			->add('nbKm',IntegerType::class, array('attr' => array('min' => 0)))
 			->add('cancel', ButtonType::class, array('label' => 'Cancel'))
 			->add('save', SubmitType::class, array('label' => 'Save'))
@@ -184,9 +194,9 @@ class TrajetController extends Controller
 			$destination = $trajet->getVilleArr();
 			$destination = substr($destination,0, strpos($destination,'(') - 1);
 			$destination = str_replace(' ', '+', $destination);
-
+			// url de l'api google avec la ville de départ et d'arrivée
 			$url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=".$origin."&destinations=".$destination."&key=".$key;
-			
+
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$resp = curl_exec($ch);
@@ -195,7 +205,8 @@ class TrajetController extends Controller
 
 			if ($httpCode == 200)
 			{
-				$resp = json_decode($resp, true);	
+				// récuprération de la réponse en json
+				$resp = json_decode($resp, true);
 			}
 			else
 			{
@@ -205,11 +216,12 @@ class TrajetController extends Controller
 		            'destination' => $destination,
 		        ));
 			}
-			
+
 			curl_close($ch);
 
 			if ($resp["status"] == "OK" && $resp["rows"][0]["elements"][0]["status"] == "OK")
 			{
+				// récupération de la distance
 				$distance = (int) round($resp["rows"][0]["elements"][0]["distance"]["value"]/1000);
 			}
 			else
@@ -221,7 +233,7 @@ class TrajetController extends Controller
 		        ));
 			}
 		}
-		
+
 
 		$em = $this->getDoctrine()->getManager();
 
@@ -233,4 +245,3 @@ class TrajetController extends Controller
 		return $this->redirectToRoute('readTrajet');
 	}
 }
-	
