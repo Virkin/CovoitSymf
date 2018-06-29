@@ -51,6 +51,8 @@ sudo vim /etc/hosts
 
 Modification apportées sur la base de données :
 
+![image de la bddCovoitSymf](bddCovoitSymf.png)
+
 Création de la table "Marque" pour avoir plusieurs modèle pour une même Marque
 
 Calcul du nombre de kilomètres via l'API Google maps :
