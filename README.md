@@ -1,5 +1,5 @@
 # Covoit Symf
-Site web de covoiturage en symfony. 
+Site web de covoiturage en symfony.
 
 ## Installation (Linux)
 
@@ -25,6 +25,24 @@ php composer.phar install
 ```bash
 php bin/console doctrine:schema:update --force
 ```
+### Installation du virtual host symfony
+
+Copier le fichier "etd1-symf.conf" sur la vm
+```bash
+scp etd1-symf.conf etdfrm1@172.31.4.33:/home/etdfrm1
+sudo mv etd1-symf.conf /etc/apache2/sites-available/.
+```
+Activer le virtual host sur la vm
+```bash
+ssh etdfrm1@172.31.4.33
+a2ensite etd1-symf.conf
+service apache2 reload
+```
+Attribuer le nom d'hôte "prjsymf.cir3-frm-smf-ang-33" à une adresse IP sur le PC
+```bash
+sudo vim /etc/hosts
+172.31.4.33 prjsymf.cir3-frm-smf-ang-33
+```
 
 ## Utilisation
 
@@ -33,5 +51,3 @@ php bin/console doctrine:schema:update --force
 ### Back Office Url : http://prjsymf.cir3-frm-smf-ang-33/adminbo
 
 ### Web Service Url : http://prjsymf.cir3-frm-smf-ang-33/api
-
-
