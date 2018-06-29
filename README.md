@@ -27,14 +27,10 @@ php bin/console doctrine:schema:update --force
 ```
 ### Installation du virtual host symfony
 
-Copier le fichier "etd1-symf.conf" sur la vm
-```bash
-scp etd1-symf.conf etdfrm1@172.31.4.33:/home/etdfrm1
-sudo mv etd1-symf.conf /etc/apache2/sites-available/.
-```
 Activer le virtual host sur la vm
 ```bash
 ssh etdfrm1@172.31.4.33
+sudo mv etd1-symf.conf /etc/apache2/sites-available/.
 a2ensite etd1-symf.conf
 service apache2 reload
 ```
@@ -51,3 +47,17 @@ sudo vim /etc/hosts
 ### Back Office Url : http://prjsymf.cir3-frm-smf-ang-33/adminbo
 
 ### Web Service Url : http://prjsymf.cir3-frm-smf-ang-33/api
+
+## Base de données :
+
+Modification apportées sur la base de données :
+
+Création de la table "Marque" pour avoir plusieurs modèle pour une même Marque
+
+Calcul du nombre de kilomètres via l'API Google maps :
+https://maps.googleapis.com/maps/api/distancematrix
+Si la requête échoue (pas de connexion), l'utilisateur saisie manuellement la distance
+
+## API
+
+Le format d'accès de l'API, de retour ainsi que des exemples sont disponibles ici : http://prjsymf.cir3-frm-smf-ang-33/api
