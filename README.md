@@ -29,15 +29,14 @@ php bin/console doctrine:schema:update --force
 
 Activer le virtual host sur la vm
 ```bash
-ssh etdfrm1@172.31.4.33
-sudo mv etd1-symf.conf /etc/apache2/sites-available/.
-a2ensite etd1-symf.conf
+sudo mv symf.conf /etc/apache2/sites-available/.
+a2ensite symf.conf
 service apache2 reload
 ```
 Attribuer le nom d'hôte "prjsymf.cir3-frm-smf-ang-33" à une adresse IP sur le PC
 ```bash
 sudo vim /etc/hosts
-172.31.4.33 prjsymf.cir3-frm-smf-ang-33
+<your_ip> prjsymf.cir3-frm-smf-ang-33
 ```
 
 ## Utilisation
